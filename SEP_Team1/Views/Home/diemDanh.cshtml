@@ -1,0 +1,246 @@
+﻿@model IEnumerable<SEP_Team1.Models.DiemDanh>
+@using SEP_Team1.API
+
+@{
+    var buoihoc = (List<SEP_Team1.Models.BangBuoiHoc>)ViewBag.Buoihoc;
+    var students = (List<SEP_Team1.API.Member>)ViewBag.Student;
+    var diemdanh = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Diemdanh;
+    ViewBag.Title = "EDIT";
+}
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-12">
+
+            <h4 class="text-white"></h4>
+        </div>
+        <div class="col-md-6">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)"></a></li>
+                <li class="breadcrumb-item active"></li>
+            </ol>
+        </div>
+        <div class="col-md-6 text-right">
+            <form class="app-search d-none d-md-block d-lg-block">
+                <input type="text" class="form-control" placeholder="Search &amp; enter">
+            </form>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- Row -->
+    <!-- Comment - table -->
+    <!-- ============================================================== -->
+    <div id="dvAttendance">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- Column -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">EDIT</h4>
+                        <div class="row button-group">
+                            <div class="col-lg-2 col-md-4">
+
+
+                                @{
+                                    List<SelectListItem> listItems = new List<SelectListItem>();
+                                    CreateSessionID create = new CreateSessionID();
+
+                                    int getID = (create.GetLastID("DiemDanh", "sessionID", Session["MaKH"].ToString()));
+                                    List<string> list = new List<string>();
+                                    for (int i = 1; i <= getID; i++)
+                                    {
+                                        listItems.Add(new SelectListItem
+                                        {
+                                            Text = "Session " + i.ToString(),
+                                            Value = i.ToString()
+                                        });
+                                    }
+
+                                }
+
+                                @using (Html.BeginForm("diemDanh", "Home", FormMethod.Post))
+            {
+
+
+                                    @Html.DropDownList("session", listItems, string.Empty, new { @class = "custom-select form-control input-sm m-b-10" })
+
+                                    <input type="submit" value="Choose" style="height:35px" />
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                            <form role="checkbox" action="@Url.Action("Edit","Home")" method="post" id="fAttendance">
+                                <div class="row">
+                                    <div class="col-12">
+
+                                        <!-- Column -->
+                                        <div class="card">
+                                            <div class="card-body">
+                                                @*<h4 class="card-title">EDIT</h4>*@
+                                                <div class="row button-group">
+
+                                                    <div class="col-lg-2 col-md-4">
+
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-4">
+
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-4">
+
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-4">
+
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-4">
+                                                        <button type="button" id="btnSave" class="btn btn-block btn-lg btn-info">SAVE EDIT</button>
+                                                    </div>
+                                                </div>
+
+                                                <div id="student-list" class="table-responsive">
+                                                    <table class="table color-table dark-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>ID Student</th>
+                                                                <th>Name</th>
+                                                                <th>Date</th>
+                                                                <th>Attendance</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item in diemdanh)
+                                                            {
+
+                                                                <tr>
+                                                                    <td><a href="/Home/StudentProfile/@item.MSSV" />@item.MSSV</td>
+                                                                    @foreach (var x in students)
+                                                                    {
+                                                                        if (x.Id.ToString() == item.MSSV.Trim().ToString())
+                                                                        {
+                                                                            <td>@x.fullname</td>
+                                                                        }
+                                                                    }
+                                                                    <td>@item.Date.ToShortDateString()</td>
+
+                                                                    @if (item.diemDanh1 == true)
+                                                                        {
+                                                                            <td style="text-align:center">
+
+                                                                                <a href="~/Home/Change/@item.MSSV">
+
+
+                                                                                  
+                                                                                    <img src="~/Image/present1.png" style="width:30px; height:30px; " />
+                                                                                </a>
+                                                                            </td>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <td style="text-align:center">
+                                                                                <a href="~/Home/Change/@item.MSSV">
+                                                                                    <img src="~/Image/absent1.png" style="width:30px;height:30px" />
+                                                                                </a>
+                                                                            </td>
+                                                                        }
+                                                                    @*<td>
+                                                                        @Html.CheckBox(item.MSSV, htmlAttributes: new { @id = item.MSSV, @class = "bt-switch" })
+                                                                    </td>*@
+                                                                    <!-- -->
+                                                                </tr>
+
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Column -->
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                        <script type="text/javascript">
+                            $(function () {
+                                $("#btnSave").on("click", function (e) {
+                                    e.preventDefault();
+                                    var form = $('#fAttendance');
+                                    var buoiHocID = $("#bhocc").val();
+                                    var boxes = $('input[name=att]:checked');
+                                    console.log(buoiHocID);
+                                    console.log(boxes);
+                                    $.ajax({
+                                        type: "POST",
+                                        url: form.attr('action'),
+                                        data: form.serialize(),
+                                        success: function (result) {
+                                            alert('Changes Completed');
+                                        },
+                                        error: function (response) {
+                                            $('#student-list').html(response.responseText);
+                                        }
+                                    });
+                                })
+                            })
+                        </script>
+
+                        <script type="text/javascript">
+                            $(".bt-switch input[type='checkbox'], .bt-switch input[type='radio']").bootstrapSwitch();
+                            var radioswitch = function () {
+                                var bt = function () {
+                                    $(".radio-switch").on("switch-change", function () {
+                                        $(".radio-switch").bootstrapSwitch("toggleRadioState")
+                                    }), $(".radio-switch").on("switch-change", function () {
+                                        $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck")
+                                    }), $(".radio-switch").on("switch-change", function () {
+                                        $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck", !1)
+                                    })
+                                };
+                                return {
+                                    init: function () {
+                                        bt()
+                                    }
+                                }
+                            }();
+                            $(document).ready(function () {
+                                radioswitch.init()
+                            });
+                        </script>
+                        <!-- ============================================================== -->
+                        <!-- End Comment - chats -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Over Visitor, Our income , slaes different and  sales prediction -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- End Page Content -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Todo, chat, notification -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- End Page Content -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Right sidebar -->
+                        <!-- ============================================================== -->
+                        <!-- .right-sidebar -->
+                        <!-- ============================================================== -->
+                        <!-- End Right sidebar -->
+                        <!-- ============================================================== -->
+                    </div>
+
+
+

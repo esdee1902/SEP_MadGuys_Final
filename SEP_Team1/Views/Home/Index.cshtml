@@ -1,0 +1,102 @@
+﻿@model IEnumerable<SEP_Team1.Models.MonHoc>
+@*@{var subjects = (List<SEP_Team1.Models.MonHoc>)ViewBag.Subject;
+    var lesson = (List<SEP_Team1.Models.KhoaHoc>)ViewBag.Lesson;
+}*@
+@{
+    ViewBag.Title = "Index";
+}
+@*<!-- ============================================================== -->
+<!-- Container fluid  -->
+<!-- ============================================================== -->
+<div class="container-fluid">
+
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-12">
+            <h4 class="text-white"></h4>
+        </div>
+        <div class="col-md-6">
+            
+        </div>
+        <div class="col-md-6 text-right">
+            <form class="app-search d-none d-md-block d-lg-block">
+                <input type="text" class="form-control" placeholder="Search &amp; enter">
+            </form>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+   
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Courses</h4>
+                    <h6 class="card-subtitle">More infomations about courses</h6>
+                    <div class="table-responsive">
+                        <table class="table color-table dark-table">
+                            <thead>
+                                <tr>
+                                    <th>ID Course</th>
+                                    <th>School Year</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Status</th>
+                                    <th>Note</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in lesson)
+                                {
+                                    <tr>
+                                    @{
+                                    DateTime start = Convert.ToDateTime(item.ngaybatdau);
+                                    DateTime end = Convert.ToDateTime(item.ngayketthuc);
+                                    string st = start.ToString("dd/MM/yyyy");
+                                    string en = end.ToString("dd/MM/yyyy");
+                                    }
+                                        <td><a href="/Home/ListStudent/@item.maKH">@item.maKH</td>
+                                        <td>@item.nienkhoa</td>
+                                        <td>@st</td>
+                                        <td>@en</td>
+                                        <td> </td>
+                                        <td> </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Comment - chats -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Over Visitor, Our income , slaes different and  sales prediction -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- End Page Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Todo, chat, notification -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- End Page Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->*@

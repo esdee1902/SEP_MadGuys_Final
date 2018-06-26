@@ -1,0 +1,49 @@
+﻿
+@model  IEnumerable<SEP_Team1.Models.DiemDanh>
+@{
+                /**/
+
+                var buoihoc = (List<SEP_Team1.Models.BangBuoiHoc>)ViewBag.Buoihoc;
+                var students = (List<SEP_Team1.Models.SinhVien>)ViewBag.Student;
+                var diemdanh = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Diemdanh;
+}
+
+
+<table class="table color-table dark-table">
+    <thead>
+        <tr>
+            <th>ID Student</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>D.O.B</th>
+            <th>Attendance</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in diemdanh)
+        {
+            foreach (var sv in students)
+            {
+                if (sv.MSSV == item.MSSV)
+                {
+                    <tr>
+                        <td><a href="/Home/StudentProfile/@item.MSSV" />@item.MSSV</td>
+                        <td>@sv.firstname</td>
+                        <td>@sv.lastname</td>
+                        @{
+                            DateTime dt = Convert.ToDateTime(sv.birthday);
+                            string nt = dt.ToString("dd/MM/yyyy");
+                        }
+                        <td>@nt</td>
+                        <!-- xu li diem danh-->
+                        <td>
+                            @Html.CheckBox(item.MSSV, item.diemDanh1, htmlAttributes: new { @id = item.MSSV, @class = "bt-switch" })
+                        </td>
+                        <!-- -->
+                    </tr>
+                                    }
+                                }
+                            }
+    </tbody>
+
+</table>
