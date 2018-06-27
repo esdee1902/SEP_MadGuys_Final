@@ -63,6 +63,7 @@ namespace SEP_Team1.Controllers
             CreateSessionID creates = new CreateSessionID();
             string ids = Session["MaKH"].ToString();
             int getIDs = (creates.GetLastID("DiemDanh", "sessionID", ids));
+          
             Session["SessionIDs"] = (getIDs + 1);
             if (getIDs > 0)
             {
@@ -73,6 +74,8 @@ namespace SEP_Team1.Controllers
                 {
                     Buoithu = "1";
                 }
+                var query = (from pro in db.DiemDanhs where pro.MaKH == ids select pro).ToList();
+                ViewBag.Date = query;
                 //   Session["maKH"] = id;
                 var monhoc = connect.TestCourse(id);
                 var sinhvien = (from pro in db.SinhViens where pro.maKH == id select pro).ToList();
@@ -175,6 +178,8 @@ namespace SEP_Team1.Controllers
                 {
                     session = "1";
                 }
+                var query = (from pro in db.DiemDanhs where pro.MaKH == ids select pro).ToList();
+                ViewBag.Date = query;
                 Session["SessionID"] = session;
                 string maGV = Session["MaGV"] as string;
                 //   Session["maKH"] = id;
@@ -235,11 +240,7 @@ namespace SEP_Team1.Controllers
            
             return RedirectToAction("diemDanh", new { Buoithu = Session["SessionID"].ToString() });
         }
-        //[HttpPost]
-        //public ActionResult edit(string Buoithu)
-        //{
-        //    return RedirectToAction("ViewAttendance", new { idbuoi = Buoithu });
-        //}
+
         public ActionResult Edit(string bhocc)
         {
             string maGV = Session["MaGV"] as string;
@@ -247,7 +248,9 @@ namespace SEP_Team1.Controllers
 
             var Fch = Request.Form.AllKeys.Where(k => k != "bhocc");
             string day = DateTime.Now.DayOfWeek.ToString();
-            var query = (from pro in db.BangBuoiHocs where pro.maKH == maKh  select pro.maBH).FirstOrDefault();
+            var query = (from pro in db.DiemDanhs where pro.MaKH == maKh select pro).ToList();
+            ViewBag.Date = query;
+            //var query = (from pro in db.BangBuoiHocs where pro.maKH == maKh  select pro.maBH).FirstOrDefault();
             string date = DateTime.Now.ToString("yyyy/MM/dd");
             string time = DateTime.Now.ToString("HH:mm:ss");
             CreateSessionID create = new CreateSessionID();
@@ -431,20 +434,29 @@ namespace SEP_Team1.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
-           var item = connect.Check_Login(username,password);
-            if (item.data.id != null && item.data.id != "")
+            var item = connect.Check_Login(username, password);
+            try
             {
-                Session["hoten"] = username;
-                Session["MaGV"] = item.data.id;
-                return RedirectToAction("Index", "Home");
+                if (item.data.id != null && item.data.id != "")
+                {
+                    Session["hoten"] = username;
+                    Session["MaGV"] = item.data.id;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.mgs = "tai khoang khong ton tai";
+                }
+
             }
-            else
+            catch (NullReferenceException)
             {
                 ViewBag.mgs = "tai khoang khong ton tai";
+                return RedirectToAction("Login", "Home");
             }
-       
+
             return View();
-          
+
         }
         [HttpGet]
         public ActionResult Logout()

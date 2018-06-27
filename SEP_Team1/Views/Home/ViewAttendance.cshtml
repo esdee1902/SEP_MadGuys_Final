@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<SEP_Team1.Models.DiemDanh>
-    @using SEP_Team1.API
+@using SEP_Team1.API
+@using SEP_Team1.Models
 
 @{
     var buoihoc = (List<SEP_Team1.Models.BangBuoiHoc>)ViewBag.Buoihoc;
     var students = (List<SEP_Team1.Models.SinhVien>)ViewBag.Student;
     var diemdanh = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Diemdanh;
+    var date = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Date;
   
 }
 @{
@@ -55,14 +57,24 @@
 
                                         int getID = (create.GetLastID("DiemDanh", "sessionID", Session["MaKH"].ToString()));
                                         List<string> list = new List<string>();
+                                        string textdate = "";
                                         for (int i = 1; i <= getID; i++)
                                         {
+                                            foreach (var item in date)
+                                            {
+                                                if (item.sessionID==i)
+                                                {
+                                                    textdate = item.Date.ToString("dd/MM/yyyy");
+                                                }
+                                            }
                                             listItems.Add(new SelectListItem
                                             {
-                                                Text = "Session " + i.ToString(),
+                                                Text = textdate + " (" + i.ToString() + ")",
                                                 Value = i.ToString()
-                                            });
-                                        }
+                                            //Text = "Session " + i.ToString(),
+                                            //Value = i.ToString()
+                                        });
+                                    }
 
                                     }
 

@@ -35,17 +35,58 @@ namespace UnitTestSep
             Assert.AreEqual("Home", redirectRoute.RouteValues["controller"]);
         }
         [TestMethod]
-        public void TestInvalidAccount()
+        public void TestInvalidAccount_WithWrongPassWord()
         {
             var helper = new MockHelper();
             var context = helper.MakeFakeContext();
             var controller = new SEP_Team1.Controllers.HomeController();
-            var Username = "phamminhhuyenmm";
-            var password = "12345678";
+            //context.SetupGet(x => x.Session["hoten"]).Returns("username");
+            //context.SetupGet(x => x.Session["MaGV"]).Returns("item.data.id");
+            var Username = "phamminhhuyen";
+            var password = "123";
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+            var redirectRoute = controller.Login(Username, password) as RedirectToRouteResult;
+            Assert.IsNotNull(redirectRoute);
+            Assert.AreEqual("Login", redirectRoute.RouteValues["action"]);
+            Assert.AreEqual("Home", redirectRoute.RouteValues["controller"]);
 
-            var redirectRoute = controller.Login(Username, password) as ViewResult;
-            Assert.AreEqual("tai khoang khong ton tai", redirectRoute.ViewBag.mgs);
+            //Assert.AreEqual("tai khoang khong ton tai", redirectRoute.ViewBag.mgs);
+        }
+        [TestMethod]
+        public void TestInvalidAccount_WithWrongUsername()
+        {
+            var helper = new MockHelper();
+            var context = helper.MakeFakeContext();
+            var controller = new SEP_Team1.Controllers.HomeController();
+            //context.SetupGet(x => x.Session["hoten"]).Returns("username");
+            //context.SetupGet(x => x.Session["MaGV"]).Returns("item.data.id");
+            var Username = "phamminhhuyennn";
+            var password = "croprokiwi";
+            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+            var redirectRoute = controller.Login(Username, password) as RedirectToRouteResult;
+            Assert.IsNotNull(redirectRoute);
+            Assert.AreEqual("Login", redirectRoute.RouteValues["action"]);
+            Assert.AreEqual("Home", redirectRoute.RouteValues["controller"]);
+
+            //Assert.AreEqual("tai khoang khong ton tai", redirectRoute.ViewBag.mgs);
+        }
+        [TestMethod]
+        public void TestInvalidAccount_WithWrongAccount()
+        {
+            var helper = new MockHelper();
+            var context = helper.MakeFakeContext();
+            var controller = new SEP_Team1.Controllers.HomeController();
+            //context.SetupGet(x => x.Session["hoten"]).Returns("username");
+            //context.SetupGet(x => x.Session["MaGV"]).Returns("item.data.id");
+            var Username = "phamminhhuyenn";
+            var password = "234567";
+            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+            var redirectRoute = controller.Login(Username, password) as RedirectToRouteResult;
+            //Assert.IsNotNull(redirectRoute);
+            Assert.AreEqual("Login", redirectRoute.RouteValues["action"]);
+            Assert.AreEqual("Home", redirectRoute.RouteValues["controller"]);
+
+            //Assert.AreEqual("tai khoang khong ton tai", redirectRoute.ViewBag.mgs);
         }
         [TestMethod]
         public void TestViewCourses()
@@ -87,49 +128,56 @@ namespace UnitTestSep
 
             ViewResult result = controller.Index() as ViewResult;
 
-            Assert.AreEqual("", result.ViewName.ToString());
+            Assert.AreEqual("", result.ViewName);
 
         }
         [TestMethod]
-        public void ViewCheck()
+        public void ViewdiemDanh()
         {
-            //var helper = new MockHelper();
-            //var context = helper.MakeFakeContext();
-            //var controller = new SEP_Team1.Controllers.HomeController();
-            //var Username = "phamminhhuyen";
-            //var password = "123456";
-            //var buoihoc = "MH1";
-            //controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
-
-            //var redirectRoute = controller.Login(Username, password) as RedirectToRouteResult;
-            //ViewResult checkresult = controller.Check(buoihoc) as ViewResult;
-            //Assert.AreEqual("", checkresult.ViewData);
-
-        }
-        [TestMethod]
-        public void viewStudentProfile()
-        {
-            //var helper = new MockHelper();
-            //var context = helper.MakeFakeContext();
-            //var controller = new SEP_Team1.Controllers.HomeController();
+            var helper = new MockHelper();
+            var context = helper.MakeFakeContext();
+            var controller = new SEP_Team1.Controllers.HomeController();
 
             //context.SetupGet(x => x.Session["MaGV"]).Returns("GV123");
-            //controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+            context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
+            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
 
-            //ViewResult stuProfile= controller. 
+            ViewResult checkresult = controller.diemDanh("2") as ViewResult;
+            Assert.AreEqual("", checkresult.ViewName);
+
+
         }
+        //[TestMethod]
+        //public void Change()
+        //{
+        //    var helper = new MockHelper();
+        //    var context = helper.MakeFakeContext();
+        //    var controller = new SEP_Team1.Controllers.HomeController();
+
+        //    context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
+        //    context.SetupGet(x => x.Session["SessionID"]).Returns("2");
+
+        //    controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+
+        //    RedirectToRouteResult result = (RedirectToRouteResult)controller.Change("T153337");
+        //    Assert.AreEqual(false, result.Permanent);
+
+
+        //}
         [TestMethod]
-        public void ExportFile()
+        public void ViewAttendance()
         {
-            //var helper = new MockHelper();
-            //var context = helper.MakeFakeContext();
-            //var controller = new SEP_Team1.Controllers.HomeController();
+            var helper = new MockHelper();
+            var context = helper.MakeFakeContext();
+            var controller = new HomeController();
+            context.SetupGet(x => x.Session["maKH"]).Returns("MH2");
+            context.SetupGet(x => x.Session["SessionIDs"]).Returns("1");
 
-            //context.SetupGet(x => x.Session["MaGV"]).Returns("GV123");
-            //controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
 
-            //ViewResult result = controller.Enrollment() as ViewResult;
-            //Assert.AreEqual("", result.ViewName);
+            ViewResult result = controller.ViewAttendance("2") as ViewResult;
+            Assert.AreEqual("", result.ViewName);
         }
     }
 }
+
