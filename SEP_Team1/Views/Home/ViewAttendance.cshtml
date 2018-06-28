@@ -7,7 +7,7 @@
     var students = (List<SEP_Team1.Models.SinhVien>)ViewBag.Student;
     var diemdanh = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Diemdanh;
     var date = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Date;
-  
+
 }
 @{
     ViewBag.Title = "VIEW ATTENDANCE";
@@ -41,7 +41,7 @@
     <!-- Comment - table -->
     <!-- ============================================================== -->
     <div id="dvAttendance">
-        <form role="checkbox"  method="post" id="fAttendance">
+        <form role="checkbox" method="post" id="fAttendance">
             <div class="row">
                 <div class="col-12">
 
@@ -62,7 +62,7 @@
                                         {
                                             foreach (var item in date)
                                             {
-                                                if (item.sessionID==i)
+                                                if (item.sessionID == i)
                                                 {
                                                     textdate = item.Date.ToString("dd/MM/yyyy");
                                                 }
@@ -71,24 +71,25 @@
                                             {
                                                 Text = textdate + " (" + i.ToString() + ")",
                                                 Value = i.ToString()
-                                            //Text = "Session " + i.ToString(),
-                                            //Value = i.ToString()
-                                        });
-                                    }
+                                                //Text = "Session " + i.ToString(),
+                                                //Value = i.ToString()
+                                            });
+                                        }
 
                                     }
 
                                     @using (Html.BeginForm("ViewAttendance", "Home", FormMethod.Post))
-{
-                   
-                      
-                            @Html.DropDownList("Buoithu", listItems, string.Empty, new { @class = "custom-select form-control input-sm m-b-10" })
+                                    {
 
-                                        <input type="submit" value="Change" style="height:35px" />
+
+                                        @Html.DropDownList("Buoithu", listItems, string.Empty, new { @class = "btn btn-block btn-lg btn-secondary" })
+
+                                        <button type="submit" value="Change" class="btn btn-block btn-lg btn-primary">Change</button>
                                     }
-                                
+
                                 </div>
                                 <div class="col-lg-2 col-md-4">
+                                    @*<input type="submit" value="Change" style="height:35px" />*@
 
                                 </div>
                                 <div class="col-lg-2 col-md-4">
@@ -102,7 +103,8 @@
                                 </div>
                                 <div class="col-lg-2 col-md-4">
                                     @* EXport *@
-                                    <a href="@Url.Action("ExportToExcel","Home", new {id = Session["MaKh"].ToString() })">Export Excel</a>
+                                    <button type="button" id="btnSave" class="btn btn-block btn-lg btn-secondary"><a href="@Url.Action("ExportToExcel","Home", new {id = Session["MaKh"].ToString() })">Export Excel</a></button>
+                                    @*<a href="@Url.Action("ExportToExcel","Home", new {id = Session["MaKh"].ToString() })">Export Excel</a>*@
                                     @* Export *@
                                 </div>
                             </div>
@@ -124,38 +126,37 @@
                                                 <td><a href="/Home/StudentProfile/@item.MSSV" />@item.MSSV</td>
                                                 <td>@item.MSSV</td>
                                                 <!-- xu li diem danh-->
-                                               
-                                                    @{
-                                                        if (item.diemDanh1 == true)
-                                                        {
-                                                            <td >
 
-                                                              
-                                                                    <img src="~/Image/present1.png" style="width:30px;height:30px;" />
-                                                              
-                                                            </td>
-                                                        }
-                                                        else
-                                                        {
-                                                            <td >
+                                                @{
+                                                    if (item.diemDanh1 == true)
+                                                    {
+                                                        <td>
 
-                                                            
+                                                            <img src="~/Image/present1.png" style="width:30px;height:30px;" />
 
-                                                                    <img src="~/Image/absent1.png" style="width:30px;height:30px;" />
-                                                              
-                                                            </td>
-                                                        }
+                                                        </td>
                                                     }
-                                                    @*@Html.CheckBox(item.MSSV, item.diemDanh1, htmlAttributes: new { @id = item.MSSV, @class = "bt-switch" })*@
-                                             
+                                                    else
+                                                    {
+                                                        <td>
+
+
+
+                                                            <img src="~/Image/absent1.png" style="width:30px;height:30px;" />
+
+                                                        </td>
+                                                    }
+                                                }
+                                                @*@Html.CheckBox(item.MSSV, item.diemDanh1, htmlAttributes: new { @id = item.MSSV, @class = "bt-switch" })*@
+
                                                 <!-- -->
                                             </tr>
 
-                                        }
+                                                    }
                                     </tbody>
                                 </table>
                             </div>
-                          
+
                         </div>
                     </div>
                     <!-- Column -->
@@ -164,52 +165,52 @@
         </form>
     </div>
     @*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $("#btnSave").on("click", function (e) {
-                e.preventDefault();
-                var form = $('#fAttendance');
-                var buoiHocID = $("#bhoc").val();
-                var boxes = $('input[name=att]:checked');
-                console.log(buoiHocID);
-                console.log(boxes);
-                $.ajax({
-                    type: "POST",
-                    url: form.attr('action'),
-                    data: form.serialize(),
-                    success: function (result) {
-                        alert('Changes Completed');
-                    },
-                    error: function (response) {
-                        $('#student-list').html(response.responseText);
-                    }
-                });
-            })
-        })
-    </script>
-
-    <script type="text/javascript">
-        $(".bt-switch input[type='checkbox'], .bt-switch input[type='radio']").bootstrapSwitch();
-        var radioswitch = function () {
-            var bt = function () {
-                $(".radio-switch").on("switch-change", function () {
-                    $(".radio-switch").bootstrapSwitch("toggleRadioState")
-                }), $(".radio-switch").on("switch-change", function () {
-                    $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck")
-                }), $(".radio-switch").on("switch-change", function () {
-                    $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck", !1)
+        <script type="text/javascript">
+            $(function () {
+                $("#btnSave").on("click", function (e) {
+                    e.preventDefault();
+                    var form = $('#fAttendance');
+                    var buoiHocID = $("#bhoc").val();
+                    var boxes = $('input[name=att]:checked');
+                    console.log(buoiHocID);
+                    console.log(boxes);
+                    $.ajax({
+                        type: "POST",
+                        url: form.attr('action'),
+                        data: form.serialize(),
+                        success: function (result) {
+                            alert('Changes Completed');
+                        },
+                        error: function (response) {
+                            $('#student-list').html(response.responseText);
+                        }
+                    });
                 })
-            };
-            return {
-                init: function () {
-                    bt()
+            })
+        </script>
+
+        <script type="text/javascript">
+            $(".bt-switch input[type='checkbox'], .bt-switch input[type='radio']").bootstrapSwitch();
+            var radioswitch = function () {
+                var bt = function () {
+                    $(".radio-switch").on("switch-change", function () {
+                        $(".radio-switch").bootstrapSwitch("toggleRadioState")
+                    }), $(".radio-switch").on("switch-change", function () {
+                        $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck")
+                    }), $(".radio-switch").on("switch-change", function () {
+                        $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck", !1)
+                    })
+                };
+                return {
+                    init: function () {
+                        bt()
+                    }
                 }
-            }
-        }();
-        $(document).ready(function () {
-            radioswitch.init()
-        });
-    </script>*@
+            }();
+            $(document).ready(function () {
+                radioswitch.init()
+            });
+        </script>*@
     <!-- ============================================================== -->
     <!-- End Comment - chats -->
     <!-- ============================================================== -->
@@ -233,6 +234,3 @@
     <!-- End Right sidebar -->
     <!-- ============================================================== -->
 </div>
-
-
-

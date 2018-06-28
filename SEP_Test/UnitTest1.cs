@@ -138,14 +138,28 @@ namespace UnitTestSep
             var context = helper.MakeFakeContext();
             var controller = new SEP_Team1.Controllers.HomeController();
 
-            //context.SetupGet(x => x.Session["MaGV"]).Returns("GV123");
             context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
+
+            context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
+
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
 
-            ViewResult checkresult = controller.diemDanh("2") as ViewResult;
-            Assert.AreEqual("", checkresult.ViewName);
+            ViewResult result = controller.diemDanh("2") as ViewResult;
+            var expected = new RouteValueDictionary
+            {
+                {"Action", "Course" },
+                {"controller", "Home" },
+                {"Id", "MH2" }
+            };
 
+            var abc = controller.diemDanh("2");
+            RedirectToRouteResult rediectRoute = controller.diemDanh("2") as RedirectToRouteResult;
 
+            Assert.AreEqual(expected, rediectRoute.RouteValues);
+            
+            
+            //Assert.AreEqual("Home", rediectRoute.RouteValues["controller"]);
+            //Assert.AreEqual("diemDanh", result.ViewName);
         }
         //[TestMethod]
         //public void Change()
