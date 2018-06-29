@@ -3,21 +3,19 @@
     var buoihoc = (List<SEP_Team1.Models.BangBuoiHoc>)ViewBag.Buoihoc;
     var students = (List<SEP_Team1.API.Member>)ViewBag.ListAttendance;
     var diemdanh = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Diemdanh;
- 
+
 }
 @{
     ViewBag.Title = "CREATE ATTENDANCE";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model IEnumerable<SEP_Team1.Models.DiemDanh>
-
 <div class="container-fluid">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-12">
-
             <h4 class="text-white"></h4>
         </div>
         <div class="col-md-6">
@@ -41,7 +39,6 @@
         <form role="checkbox" action="@Url.Action("Ed","Home")" method="post" id="fAttendance">
             <div class="row">
                 <div class="col-12">
-
                     <!-- Column -->
                     <div class="card">
                         <div class="card-body">
@@ -51,22 +48,17 @@
                                     @*@Html.DropDownList("bhoc", new SelectList(buoihoc, "maBH", "maBH"), htmlAttributes: new { @class = "custom-select form-control input-sm m-b-10" })*@
                                 </div>
                                 <div class="col-lg-2 col-md-4">
-
                                 </div>
                                 <div class="col-lg-2 col-md-4">
-
                                 </div>
                                 <div class="col-lg-2 col-md-4">
-
                                 </div>
                                 <div class="col-lg-2 col-md-4">
-
                                 </div>
                                 <div class="col-lg-2 col-md-4">
                                     <button type="button" id="btnSave" class="btn btn-block btn-lg btn-info">Save</button>
                                 </div>
                             </div>
-
                             <div id="student-list" class="table-responsive">
                                 <table class="table color-table dark-table">
                                     <thead>
@@ -82,7 +74,6 @@
                                         {
 
                                             <tr>
-
                                                 <td><a href="/Home/StudentProfile/@item.Id" />@item.Id</td>
                                                 <td>@item.fullname</td>
                                                 <td>@item.birthday</td>
@@ -128,7 +119,6 @@
             })
         })
     </script>
-
     <script type="text/javascript">
         $(".bt-switch input[type='checkbox'], .bt-switch input[type='radio']").bootstrapSwitch();
         var radioswitch = function () {

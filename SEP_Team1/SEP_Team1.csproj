@@ -5417,11 +5417,11 @@
     <Content Include="Views\Home\Attendance.cshtml" />
     <Content Include="Views\Home\Course.cshtml" />
     <Content Include="Views\Home\Check.cshtml" />
-    <Content Include="Views\Home\ListStudent.cshtml" />
     <Content Include="Views\Home\diemDanh.cshtml" />
     <Content Include="Views\Home\CreateAttendance.cshtml" />
     <Content Include="Views\Home\ViewAttendance.cshtml" />
     <Content Include="Views\Home\ViewListStudent.cshtml" />
+    <Content Include="Views\Home\ListStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

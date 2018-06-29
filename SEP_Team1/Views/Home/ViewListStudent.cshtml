@@ -11,7 +11,7 @@
     var students = (List<SEP_Team1.API.Member>)ViewBag.ListAttendance;
     var diemdanh = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Diemdanh;
     var makh = Session["MaKH"].ToString();
-   
+
 }
 
 
@@ -49,28 +49,14 @@
                     <!-- Column -->
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title" >List of Student</h4>
+                            <h4 class="card-title">List of Student</h4>
                             <div class="row button-group">
                                 <div class="col-lg-2 col-md-4">
-                                    @*@Html.DropDownList("bhoc", new SelectList(buoihoc, "maBH", "maBH"), htmlAttributes: new { @class = "custom-select form-control input-sm m-b-10" })*@
+                                    <a href="/Home/CreateAttendance/@makh"><i class="fa fa-plus-circle"></i> Create</a>
                                 </div>
-                                <div class="col-lg-2 col-md-4">
 
-                                </div>
-                                <div class="col-lg-2 col-md-4">
-
-                                </div>
-                                <div class="col-lg-2 col-md-4">
-
-                                </div>
-                                <div class="col-lg-2 col-md-4">
-
-                                </div>
-                                <div class="col-lg-2 col-md-4">
-                                    <a href="~/Home/CreateAttendance/@makh" type="text"  class="btn btn-block btn-lg btn-info"><p>Create Attendance</p></a>
-                                </div>
                             </div>
-
+                            <div></div>
                             <div id="student-list" class="table-responsive">
                                 <table class="table color-table dark-table">
                                     <thead>
@@ -78,7 +64,7 @@
                                             <th>ID Student</th>
                                             <th>Name</th>
                                             <th>D.O.B</th>
-                                          
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -92,8 +78,8 @@
                                                 <td>@item.birthday</td>
                                                 <!-- xu li diem danh-->
                                                 @*<td>
-                                                    @Html.CheckBox(item.Id, htmlAttributes: new { @id = item.Id, @class = "bt-switch" })
-                                                </td>*@
+                                                        @Html.CheckBox(item.Id, htmlAttributes: new { @id = item.Id, @class = "bt-switch" })
+                                                    </td>*@
                                                 <!-- -->
                                             </tr>
 
