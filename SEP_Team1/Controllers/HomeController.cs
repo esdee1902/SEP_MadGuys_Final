@@ -262,12 +262,6 @@ namespace SEP_Team1.Controllers
                     string x = Request.Form[fea.Trim()];
                     var diemDanh1 = Request.Form[fea.Trim()] != "false";
 
-                    //sessionID = int.Parse(Session["SessionIDs"].ToString()),
-                    //MaKH = maKh,
-                    //Date = DateTime.Now.Date,
-                    //Time = TimeSpan.Parse(DateTime.Now.ToString("HH:mm:ss")),
-                    //maBH = query,
-                    //MSSV = fea.Trim(),
 
                     conn = ut.OpenDb();
                     conn.Open();
