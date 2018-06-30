@@ -186,6 +186,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Admin\assets\images\1.png" />
+    <Content Include="Content\Admin\assets\images\2.png" />
+    <Content Include="Content\Admin\assets\images\3.png" />
+    <Content Include="Content\Admin\assets\images\4.png" />
+    <Content Include="Content\Admin\assets\images\5.png" />
     <Content Include="Content\Admin\assets\images\logo2.png" />
     <Content Include="Content\Admin\assets\icons\crypto-icons\cryptocoins-colors.css" />
     <Content Include="Content\Admin\assets\icons\crypto-icons\cryptocoins.css" />
