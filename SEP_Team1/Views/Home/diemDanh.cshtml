@@ -73,7 +73,13 @@
                                 }
 
                             }
-                        
+                           <div class="col-lg-2 col-md-4">
+                                @using (Html.BeginForm("diemDanh", "Home", FormMethod.Post))
+                                {
+                                    @Html.DropDownList("session", listItems,"Lessons", new { @class = "btn btn-block btn-lg btn-secondary" })
+                                    <button type="submit" value="Choose" class="btn btn-block btn-lg btn-primary">Choose</button>
+                                }
+                            </div>
                            
                             <div class="col-lg-2 col-md-4">
                             </div>
@@ -136,13 +142,7 @@
                                 </tbody>
                             </table>
                         </div>
-                         <div class="col-lg-2 col-md-4">
-                                @using (Html.BeginForm("diemDanh", "Home", FormMethod.Post))
-                                {
-                                    @Html.DropDownList("session", listItems,"Lessons", new { @class = "btn btn-block btn-lg btn-secondary" })
-                                    <button type="submit" value="Choose" class="btn btn-block btn-lg btn-primary">Choose</button>
-                                }
-                            </div>
+                      
                     </div>
                 </div>
             </div>
