@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="sep21t21" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=125.234.238.137,8082;Initial Catalog=sep21t21;Persist Security Info=True;User ID=sep21t21" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="sep21t21ConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=125.234.238.137,8082;Initial Catalog=sep21t21;User ID=sep21t21" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="sep21t21ConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.BangBuoiHoc" Member="BangBuoiHocs">
     <Type Name="BangBuoiHoc">
       <Column Name="maBH" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -9,13 +9,6 @@
       <Column Name="room" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
       <Association Name="KhoaHoc_BangBuoiHoc" Member="KhoaHoc" ThisKey="maKH" OtherKey="maKH" Type="KhoaHoc" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.sv_kh" Member="sv_khs">
-    <Type Name="sv_kh">
-      <Column Name="maKH" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MSSV" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="KhoaHoc_sv_kh" Member="KhoaHoc" ThisKey="maKH" OtherKey="maKH" Type="KhoaHoc" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DiemDanh" Member="DiemDanhs">
@@ -30,14 +23,6 @@
       <Column Name="sessionID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.GiangDay" Member="GiangDays">
-    <Type Name="GiangDay">
-      <Column Name="maMH" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="maGV" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="GiangVien_GiangDay" Member="GiangVien" ThisKey="maGV" OtherKey="maGV" Type="GiangVien" IsForeignKey="true" />
-      <Association Name="MonHoc_GiangDay" Member="MonHoc" ThisKey="maMH" OtherKey="maMH" Type="MonHoc" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.GiangVien" Member="GiangViens">
     <Type Name="GiangVien">
       <Column Name="maGV" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -46,6 +31,14 @@
       <Column Name="hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="ngaySinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="GiangVien_GiangDay" Member="GiangDays" ThisKey="maGV" OtherKey="maGV" Type="GiangDay" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GiangDay" Member="GiangDays">
+    <Type Name="GiangDay">
+      <Column Name="maMH" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maGV" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="GiangVien_GiangDay" Member="GiangVien" ThisKey="maGV" OtherKey="maGV" Type="GiangVien" IsForeignKey="true" />
+      <Association Name="MonHoc_GiangDay" Member="MonHoc" ThisKey="maMH" OtherKey="maMH" Type="MonHoc" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.KhoaHoc" Member="KhoaHocs">
@@ -67,14 +60,6 @@
       <Column Name="Uid" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.MonHoc" Member="MonHocs">
-    <Type Name="MonHoc">
-      <Column Name="maMH" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="tenMH" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Association Name="MonHoc_GiangDay" Member="GiangDays" ThisKey="maMH" OtherKey="maMH" Type="GiangDay" />
-      <Association Name="MonHoc_KhoaHoc" Member="KhoaHocs" ThisKey="maMH" OtherKey="maMH" Type="KhoaHoc" />
-    </Type>
-  </Table>
   <Table Name="dbo.SinhVien" Member="SinhViens">
     <Type Name="SinhVien">
       <Column Name="MSSV" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
@@ -85,6 +70,21 @@
       <Column Name="finger" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="maKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MonHoc" Member="MonHocs">
+    <Type Name="MonHoc">
+      <Column Name="maMH" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenMH" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="MonHoc_GiangDay" Member="GiangDays" ThisKey="maMH" OtherKey="maMH" Type="GiangDay" />
+      <Association Name="MonHoc_KhoaHoc" Member="KhoaHocs" ThisKey="maMH" OtherKey="maMH" Type="KhoaHoc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sv_kh" Member="sv_khs">
+    <Type Name="sv_kh">
+      <Column Name="maKH" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MSSV" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="KhoaHoc_sv_kh" Member="KhoaHoc" ThisKey="maKH" OtherKey="maKH" Type="KhoaHoc" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

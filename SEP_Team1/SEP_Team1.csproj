@@ -4554,11 +4554,6 @@
     <Content Include="Content\Admin\dist\scss\widgets\topbar-mail.scss" />
     <Content Include="Content\Admin\dist\scss\widgets\weather-widget.scss" />
     <Content Include="Content\Admin\dist\scss\widgets\widgets.scss" />
-    <Content Include="Models\DataClasses1.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\Admin\assets\node_modules\bootstrap-material-datetimepicker\.gitignore" />
     <Content Include="Content\Admin\assets\node_modules\bootstrap-material-datetimepicker\bower.json" />
     <Content Include="Content\Admin\assets\node_modules\bootstrap-material-datetimepicker\font\Material-Design-Icons.eot" />
@@ -5401,6 +5396,11 @@
     <Content Include="Content\Admin\assets\node_modules\typeahead.js-master\README.md" />
     <Content Include="Content\Admin\assets\node_modules\typeahead.js-master\test\ci" />
     <Content Include="Content\Admin\assets\node_modules\typeahead.js-master\typeahead.js.jquery.json" />
+    <Content Include="Models\DataClasses1.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
