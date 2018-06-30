@@ -5,6 +5,8 @@ using SEP_Team1.Models;
 using System.Web.Mvc;
 using System.Web.Routing;
 using SEP_Demo.Tests;
+using Moq;
+using System.Web;
 
 namespace UnitTestSep
 {
@@ -281,41 +283,20 @@ namespace UnitTestSep
             ViewResult result = controller.Login() as ViewResult;
             Assert.AreEqual("", result.ViewName.ToString());
         }
-        [TestMethod]
-        public void TestExport()
-        //{
-        //    var helper = new MockHelper();
-        //    var context = helper.MakeFakeContext();
-        //    var controller = new SEP_Team1.Controllers.HomeController();
-        //    controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+        //[TestMethod]
+        //public void TestExport()
+        ////{
+        ////    var helper = new MockHelper();
+        ////    var context = helper.MakeFakeContext();
+        ////    var controller = new SEP_Team1.Controllers.HomeController();
+        ////    controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+        ////    context.SetupGet(x => x.Session["SessionExcel"]).Returns("1");
 
-        //    var serverMock = new Mock<HttpServerUtilityBase>();
-        //    serverMock.Setup(x => x.MapPath("~/Images/ProductAvatar")).Returns(@"C:\Users\ngocs\OneDrive\Máy tính\Trading280618\SEP-Demo\Images\ProductAvatar");
 
-        //    context.Setup(x => x.Server).Returns(serverMock.Object);
 
-        //    var file1Mock = new Mock<HttpPostedFileBase>();
-        //    file1Mock.Setup(x => x.FileName).Returns("1.jpg");
+        ////    var actual = controller.ExportToExcel("MH3") as FileResult;
 
-        //    var image = new[] { file1Mock.Object };
-        //    var image1 = file1Mock.Object;
-        //    context.SetupGet(x => x.Session["ID"]).Returns(6);
-        //    var product = new Product
-        //    {
-        //        Name = "deplao1",
-        //        CategoryID = 4,
-        //        Description = "son ",
-        //        Image_Detail = image,
-        //        Image = image1
-        //    };
-
-        //    // act
-        //    var actual = controller.Create(product, 12) as RedirectToRouteResult;
-        //    file1Mock.Verify(x => x.SaveAs(@"C:\Users\ngocs\OneDrive\Máy tính\Trading280618\SEP-Demo\Images\ProductAvatar\1.jpg"));
-        //    // Assert
-        //    Assert.AreEqual("ViewProfile", actual.RouteValues["Action"]);
-        //    Assert.AreEqual("Account", actual.RouteValues["controller"]);
-        }
+        //}
 
     }
 }
