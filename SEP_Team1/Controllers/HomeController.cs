@@ -358,10 +358,6 @@ namespace SEP_Team1.Controllers
                     Session["MaGV"] = item.data.id;
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    ViewBag.mgs = "tai khoang khong ton tai";
-                }
 
             }
             catch (NullReferenceException)
@@ -451,7 +447,7 @@ namespace SEP_Team1.Controllers
 
             var model = connect.Getstudent(id);
 
-            return View(model);
+            return View();
 
         }
     }
