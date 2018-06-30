@@ -17,6 +17,7 @@ namespace SEP_Team1.API
         private string urlAddress = "https://entool.azurewebsites.net/SEP21";
         private string urlConnect;
         private string data;
+        public StudentInfos studentinfos = null;
         public Members members = null;
         public Logins logins = null;
         private string Url(string url)
@@ -169,6 +170,34 @@ namespace SEP_Team1.API
                 }
                 //
                 return courses;
+
+            }
+            return null;
+        }
+        public StudentInfos Getstudent(string id)
+        {
+            //url address
+            urlConnect = urlAddress+ "/GetStudent?code={0}";
+            urlConnect = string.Format(urlConnect, id);
+
+            data = Url(urlConnect);
+            if (data != "")
+            {
+                //tao noi luu tru vao model
+                var studentinfo = new StudentInfo();
+                //parse data json
+                //get data json type array
+
+                try
+                {
+                    studentinfos = JsonConvert.DeserializeObject<StudentInfos>(data);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                //
+                return studentinfos;
 
             }
             return null;

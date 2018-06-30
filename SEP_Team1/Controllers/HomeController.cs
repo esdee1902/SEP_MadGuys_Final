@@ -31,14 +31,14 @@ namespace SEP_Team1.Controllers
             string maGV = Session["MaGV"] as string;
             var monhoc = connect.TestCourse(maGV);
             //  var maMH = monhoc.
-            //var khoahoc = db.KhoaHocs.Where(kh => maMH.Contains(kh.maMH)).ToList();
-            // var maKH = khoahoc.Select(kh => kh.maKH);
+            var khoahoc = db.KhoaHocs.ToList();
+             var maKH = khoahoc.Select(kh => kh.maKH);
             var buoihoc = db.BangBuoiHocs.Where(x=>x.maKH==maGV).ToList();
             ViewBag.Days = buoihoc.Count();
             //ViewBag.nKhoaHoc = khoahoc.Count();
-            //ViewBag.Lesson = khoahoc;
+            ViewBag.Lesson = khoahoc;
             ViewBag.Subject = monhoc;
-            return View();
+            return View(khoahoc);
         }
         public ActionResult Course(string id)
         {
@@ -444,6 +444,16 @@ namespace SEP_Team1.Controllers
             Response.End();
 
         }
+        public ActionResult StudentProfile(string id)
+        {
+            string maGV = Session["MaGV"] as string;
+
+            var model = connect.Getstudent(id);
+
+            return View(model);
+
+        }
     }
+    
 }
     

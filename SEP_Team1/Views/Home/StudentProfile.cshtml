@@ -1,0 +1,70 @@
+﻿@model SEP_Team1.API.StudentInfos
+@{
+    ViewBag.Title = "StudentProfile";
+
+
+}
+
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h4 class="text-themecolor">Student Profile</h4>
+        </div>
+        <div class="col-md-7 align-self-center text-right">
+            <div class="d-flex justify-content-end align-items-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    <li class="breadcrumb-item active">Student Profile</li>
+                </ol>
+                <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <!-- row -->
+    <div class="row">
+        <!-- Column -->
+    
+        <!-- Column -->
+        <!-- Column -->
+        <div class=" col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-6 border-right">
+                            <strong>Full Name</strong>
+                            <br>
+                            <p class="text-muted">@Model.data.lastname @Model.data.firstname</p>
+                        </div>
+                        <div class="col-md-3 col-xs-6 border-right">
+                            <strong>ID Number</strong>
+                            <br>
+                            <p class="text-muted">@Model.data.Id</p>
+                        </div>
+
+                        <div class="col-md-3 col-xs-6 border-right">
+                            <strong>Birthday</strong>
+                            <br>
+                            <p class="text-muted">@Model.data.birthday</p>
+                        </div>
+                        <div class="col-md-3 col-xs-6">
+                            <strong>Location</strong>
+                            <br>
+                            <p class="text-muted">Vietnam</p>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

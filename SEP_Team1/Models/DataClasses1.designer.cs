@@ -20,9 +20,9 @@ namespace SEP_Team1.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-	
-	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="sep21t21")]
+    using System.Data.Entity;
+
+    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name="sep21t21")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -160,7 +160,8 @@ namespace SEP_Team1.Models
 				return this.GetTable<SinhVien>();
 			}
 		}
-	}
+        public virtual DbSet<SinhVien> SinhVien { get; set; }
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BangBuoiHoc")]
 	public partial class BangBuoiHoc : INotifyPropertyChanging, INotifyPropertyChanged
