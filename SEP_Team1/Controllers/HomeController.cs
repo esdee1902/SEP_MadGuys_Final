@@ -382,25 +382,25 @@ namespace SEP_Team1.Controllers
         }
         //Export
         [HttpGet]
-        public byte[]  ExportToExcel(string id)
+        public void ExportToExcel(string id)
         {
             int sessionex = int.Parse(Session["SessionExcel"].ToString());
             List<DiemDanh> diemDanh = (from pro in db.DiemDanhs where pro.MaKH == id && pro.sessionID == sessionex select pro).ToList();
-            List<SinhVien> sinhVien = db.SinhViens.Where(x => x.maKH == id).ToList();
+            var sinhVien = connect.GetMember(Session["MaKH"].ToString()).data;
             List<DiemDanhViewModel> emplist = new List<DiemDanhViewModel>();
             foreach (var dd in diemDanh)
             {
 
                 foreach (var sv in sinhVien)
                 {
-                    if (sv.MSSV.Trim() == dd.MSSV.Trim())
+                    if (sv.Id.Trim() == dd.MSSV.Trim())
                     {
                         DiemDanhViewModel ddModel = new DiemDanhViewModel
                         {
-                            MSSV = sv.MSSV,
+                            MSSV = sv.Id,
                             firstname = sv.firstname,
                             lastname = sv.lastname,
-                            birthday = (DateTime)sv.birthday,
+                            birthday = DateTime.Parse(sv.birthday),
                             DiemDanh = dd.diemDanh1,
                         };
                         emplist.Add(ddModel);
@@ -443,7 +443,7 @@ namespace SEP_Team1.Controllers
             Response.AddHeader("content-disposition", "attachment: filename=" + "ExcelReport.xlsx");
             Response.BinaryWrite(pck.GetAsByteArray());
             Response.End();
-            return pck.GetAsByteArray();
+
         }
         public ActionResult StudentProfile(string id)
         {

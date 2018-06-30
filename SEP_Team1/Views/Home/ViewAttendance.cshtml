@@ -7,6 +7,8 @@
     var students = (List<SEP_Team1.Models.SinhVien>)ViewBag.Student;
     var diemdanh = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Diemdanh;
     var date = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Date;
+    APIConnect connect = new APIConnect();
+    var studen = connect.GetMember(Session["MaKH"].ToString()).data;
 
 }
 @{
@@ -114,6 +116,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID Student</th>
+                                            <th>Name</th>
                                             <th>D.O.B</th>
                                             <th>Attendance</th>
                                         </tr>
@@ -124,7 +127,15 @@
 
                                             <tr>
                                                 <td><a href="/Home/StudentProfile/@item.MSSV" />@item.MSSV</td>
-                                                <td>@item.MSSV</td>
+                                             @foreach (var x in studen)
+                                             {
+                                                 if (item.MSSV.Trim() == x.Id.Trim())
+                                                 {
+                                                     <td>@x.fullname</td>
+                                                     <td>@x.birthday</td>
+                                                 }
+                                             }
+
                                                 <!-- xu li diem danh-->
 
                                                 @{
