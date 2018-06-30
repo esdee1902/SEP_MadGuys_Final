@@ -73,17 +73,8 @@
                                 }
 
                             }
-                            <div class="col-lg-2 col-md-4">
-                                @using (Html.BeginForm("diemDanh", "Home", FormMethod.Post))
-                                {
-
-
-                                    @Html.DropDownList("session", listItems, string.Empty, new { @class = "btn btn-block btn-lg btn-secondary" })
-
-                                    <button type="submit" value="Choose" class="btn btn-block btn-lg btn-primary">Choose</button>
-                                }
-                            </div>
-
+                        
+                           
                             <div class="col-lg-2 col-md-4">
                             </div>
                             <div class="col-lg-2 col-md-4">
@@ -91,17 +82,14 @@
                             <div class="col-lg-2 col-md-4">
                             </div>
                             <div class="col-lg-2 col-md-4">
-                            </div>
-                            <div class="col-lg-2 col-md-4">
-                                <button type="button" id="btnSave" class="btn btn-block btn-lg btn-info">SAVE EDIT</button>
-                            </div>
+                            </div>          
                         </div>
                         <div id="student-list" class="table-responsive">
                             <table class="table color-table dark-table">
                                 <thead>
                                     <tr>
                                         <th style="text-align:center">ID Student</th>
-                                        <th style="text-align:center"></th>
+                                        <th style="text-align:center">Name</th>
                                         <th style="text-align:center">Date</th>
                                         <th style="text-align:center">Attendance</th>
 
@@ -120,7 +108,7 @@
                                                     <td style="text-align:center">@x.fullname</td>
                                                 }
                                             }
-                                            <td style="text-align:center"></td>
+                                     
                                             <td style="text-align:center">@item.Date.ToShortDateString()</td>
                                             @if (item.diemDanh1 == true)
                                             {
@@ -148,6 +136,13 @@
                                 </tbody>
                             </table>
                         </div>
+                         <div class="col-lg-2 col-md-4">
+                                @using (Html.BeginForm("diemDanh", "Home", FormMethod.Post))
+                                {
+                                    @Html.DropDownList("session", listItems,"Lessons", new { @class = "btn btn-block btn-lg btn-secondary" })
+                                    <button type="submit" value="Choose" class="btn btn-block btn-lg btn-primary">Choose</button>
+                                }
+                            </div>
                     </div>
                 </div>
             </div>

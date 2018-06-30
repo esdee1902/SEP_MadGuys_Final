@@ -359,6 +359,7 @@
                                 @foreach (var item in list.data)
                                 {
                                     string text = item.Name + "[" + item.Id + "]";
+                                    Session["Khoahoc"] = text;
                                     <li><a href="/Home/Course/@item.Id">@text</a></li>
                                 }
                             </ul>

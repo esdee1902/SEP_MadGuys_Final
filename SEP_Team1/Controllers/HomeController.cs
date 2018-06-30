@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Web.UI;
 using OfficeOpenXml;
+using System.Text;
 
 namespace SEP_Team1.Controllers
 {
@@ -31,14 +32,14 @@ namespace SEP_Team1.Controllers
             string maGV = Session["MaGV"] as string;
             var monhoc = connect.TestCourse(maGV);
             //  var maMH = monhoc.
-            //var khoahoc = db.KhoaHocs.Where(kh => maMH.Contains(kh.maMH)).ToList();
-            // var maKH = khoahoc.Select(kh => kh.maKH);
+            var khoahoc = db.KhoaHocs.ToList();
+             var maKH = khoahoc.Select(kh => kh.maKH);
             var buoihoc = db.BangBuoiHocs.Where(x=>x.maKH==maGV).ToList();
             ViewBag.Days = buoihoc.Count();
             //ViewBag.nKhoaHoc = khoahoc.Count();
-            //ViewBag.Lesson = khoahoc;
+            ViewBag.Lesson = khoahoc;
             ViewBag.Subject = monhoc;
-            return View();
+            return View(khoahoc);
         }
         public ActionResult Course(string id)
         {
@@ -381,7 +382,7 @@ namespace SEP_Team1.Controllers
         }
         //Export
         [HttpGet]
-        public void ExportToExcel(string id)
+        public byte[]  ExportToExcel(string id)
         {
             int sessionex = int.Parse(Session["SessionExcel"].ToString());
             List<DiemDanh> diemDanh = (from pro in db.DiemDanhs where pro.MaKH == id && pro.sessionID == sessionex select pro).ToList();
@@ -442,8 +443,18 @@ namespace SEP_Team1.Controllers
             Response.AddHeader("content-disposition", "attachment: filename=" + "ExcelReport.xlsx");
             Response.BinaryWrite(pck.GetAsByteArray());
             Response.End();
+            return pck.GetAsByteArray();
+        }
+        public ActionResult StudentProfile(string id)
+        {
+            string maGV = Session["MaGV"] as string;
+
+            var model = connect.Getstudent(id);
+
+            return View(model);
 
         }
     }
+    
 }
     
