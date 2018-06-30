@@ -171,7 +171,7 @@ namespace SEP_Team1.Controllers
             CreateSessionID creates = new CreateSessionID();
             string ids = Session["MaKH"].ToString();
             int getIDs = (creates.GetLastID("DiemDanh", "sessionID", ids));
-            if (getIDs >0)
+            if (getIDs > 0)
             {
 
 
