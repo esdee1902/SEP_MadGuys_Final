@@ -130,6 +130,8 @@ namespace SEP_Team1.Controllers
             Session["CreateAttendance"] = "";
             try
             {
+                
+
                 if (maKH.Length <1 || maKH == null || maKH == "")
                 {
                     maKH = Session["MaKH"].ToString();
@@ -387,8 +389,8 @@ namespace SEP_Team1.Controllers
             }
             catch (NullReferenceException)
             {
-               
-                return RedirectToAction("Login");
+                ViewBag.mgs = "Incorrect Username or password";
+                return View();
             }
 
             return View();
