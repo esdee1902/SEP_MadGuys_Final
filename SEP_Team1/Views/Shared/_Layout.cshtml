@@ -1,9 +1,6 @@
 ﻿@using SEP_Team1.API
 @{ 
-    if ( Session["hoten"] == null)
-    {
-        Response.Redirect("~/Home/Login");
-    }
+   
 
 }
 <!DOCTYPE html>
@@ -27,25 +24,25 @@
     <title>Hello - @Session["hoten"]</title>
     <!-- This page CSS -->
     <!-- chartist CSS -->
-    <link href="/Content/Admin/assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <link href="~/Content/Admin/assets/node_modules/morrisjs/morris.css" rel="stylesheet">
     <!--Toaster Popup message CSS -->
-    <link href="/Content/Admin/assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
+    <link href="~/Content/Admin/assets/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
     <!-- Morris CSS -->
-    <link href="/Content/Admin/assets/node_modules/morrisjs/morris.css" rel="stylesheet">
+    <link href="~/Content/Admin/assets/node_modules/morrisjs/morris.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="/Content/Admin/dist/css/style.min.css" rel="stylesheet">
+    <link href="~/Content/Admin/dist/css/style.min.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
-    <link href="/Content/Admin/dist/css/pages/dashboard1.css" rel="stylesheet">
+    <link href="~/Content/Admin/dist/css/pages/dashboard1.css" rel="stylesheet">
     <!-- Date -->
-    <link href="/Content/Admin/assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="~/Content/Admin/assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
     <!-- Editable CSS -->
-    <link type="text/css" rel="stylesheet" href="/Content/Admin/assets/node_modules/jsgrid/jsgrid.min.css" />
-    <link type="text/css" rel="stylesheet" href="/Content/Admin/assets/node_modules/jsgrid/jsgrid-theme.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/Admin/assets/node_modules/jsgrid/jsgrid.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/Admin/assets/node_modules/jsgrid/jsgrid-theme.min.css" />
     <!-- Timeline CSS -->
-    <link href="/Content/Admin/assets/node_modules/horizontal-timeline/css/horizontal-timeline.css" rel="stylesheet">
-    <link href="/Content/Admin/dist/css/pages/timeline-vertical-horizontal.css" rel="stylesheet">
+    <link href="~/Content/Admin/assets/node_modules/horizontal-timeline/css/horizontal-timeline.css" rel="stylesheet">
+    <link href="~/Content/Admin/dist/css/pages/timeline-vertical-horizontal.css" rel="stylesheet">
     <!-- page css -->
-    <link href="/Content/Admin/dist/css/pages/bootstrap-switch.css" rel="stylesheet">
+    <link href="~/Content/Admin/dist/css/pages/bootstrap-switch.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -317,7 +314,7 @@
                         <!-- User Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown u-pro">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/Content/Admin/assets/images/users/avatar.PNG" alt="user" class=""> <span class="hidden-md-down">@Session["hoten"] &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="~/Content/Admin/assets/images/users/avatar.PNG" alt="user" class=""> <span class="hidden-md-down">@Session["hoten"] &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
                                 <!-- text-->
                                 <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
