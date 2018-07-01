@@ -401,7 +401,7 @@ namespace SEP_Team1.Controllers
         {
             Session["hoten"] = null;
             Session["MaGV"] = null;
-            return RedirectToAction("Login", "Home");
+            return RedirectToAction("Login");
         }
         //Export
         [HttpGet]
