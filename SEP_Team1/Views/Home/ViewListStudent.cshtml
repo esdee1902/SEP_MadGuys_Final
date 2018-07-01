@@ -62,7 +62,12 @@
                             }
                            
                             <h4 class="card-title">List of Student</h4>
-                          
+                            <div class="row button-group">
+                                <div class="col-lg-2 col-md-4">
+                                    <a href="/Home/CreateAttendance/@makh"><i class="fa fa-plus-circle"></i> Create </a> @ViewBag.msg
+                                </div>
+
+                            </div>
                             <div></div>
                             <div id="student-list" class="table-responsive">
                                 <table class="table color-table dark-table">
@@ -80,7 +85,7 @@
 
                                             <tr>
 
-                                                <td><a href="/Home/StudentProfile/@item.Id" />@item.Id</td>
+                                                <td><a href="~/Home/StudentProfile/@item.Id" />@item.Id</td>
                                                 <td>@item.fullname</td>
                                                 <td>@item.birthday</td>
                                                 <!-- xu li diem danh-->
