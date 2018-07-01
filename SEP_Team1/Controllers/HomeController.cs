@@ -450,7 +450,7 @@ namespace SEP_Team1.Controllers
 
             var model = connect.Getstudent(id);
 
-            return View();
+            return View(model);
 
         }
     }
