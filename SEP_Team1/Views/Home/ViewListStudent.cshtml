@@ -1,5 +1,6 @@
 ﻿
 @model IEnumerable<SEP_Team1.Models.DiemDanh>
+@using System.Web
 @{
     ViewBag.Title = "ViewListStudent";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,10 +12,14 @@
     var students = (List<SEP_Team1.API.Member>)ViewBag.ListAttendance;
     var diemdanh = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Diemdanh;
     var makh = Session["MaKH"].ToString();
-   
-
+    var thongbao = ViewBag.msg;
 }
-
+@{ 
+    if (Session["MaGV"].ToString().Length < 1)
+    {
+      Response.Redirect("~/Home/Login");
+    }
+}
 
 <div class="container-fluid">
     <!-- ============================================================== -->
@@ -50,6 +55,13 @@
                     <!-- Column -->
                     <div class="card">
                         <div class="card-body">
+                            @{
+                                if (Session["CreateAttendance"].ToString().Length > 2)
+                                {
+                                    <h1 style="color: red">@Session["CreateAttendance"].ToString()</h1>
+                                }
+                            }
+                           
                             <h4 class="card-title">List of Student</h4>
                             <div class="row button-group">
                                 <div class="col-lg-2 col-md-4">
