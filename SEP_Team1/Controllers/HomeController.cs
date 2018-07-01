@@ -31,7 +31,7 @@ namespace SEP_Team1.Controllers
         {
             if (Session["MaGV"].ToString().Length < 2)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Home");
             }
             Session["CreateAttendance"] = "";
             string maGV = Session["MaGV"] as string;
@@ -384,13 +384,13 @@ namespace SEP_Team1.Controllers
                     Session["hoten"] = username;
                     Session["MaGV"] = item.data.id;
                     return RedirectToAction("Index", "Home");
+                 
                 }
-
             }
             catch (NullReferenceException)
             {
-                ViewBag.mgs = "Incorrect account or password";
-                return RedirectToAction("Login", "Home");
+                ViewBag.mgs = "Incorrect Username or password";
+                return View();
             }
 
             return View();
