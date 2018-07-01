@@ -52,7 +52,6 @@
                         <div class="card-body">
                             <h4 class="card-title">VIEW ATTENDANCE</h4>
                             <div class="row button-group">
-                                <div class="col-lg-2 col-md-4">
                                     @{
                                         List<SelectListItem> listItems = new List<SelectListItem>();
                                         CreateSessionID create = new CreateSessionID();
@@ -82,14 +81,17 @@
 
                                     @using (Html.BeginForm("ViewAttendance", "Home", FormMethod.Post))
                                     {
-
-
-                                        @Html.DropDownList("Buoithu", listItems, string.Empty, new { @class = "btn btn-block btn-lg btn-secondary" })
-
-                                        <button type="submit" value="Change" class="btn btn-block btn-lg btn-primary">Change</button>
+                                        <div class="row">
+                                            <div class="col-sm-6 ">
+                                                @Html.DropDownList("Buoithu", listItems, new { @class = "btn btn-block btn-lg btn-secondary" })
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <button type="submit" value="Change" class="btn btn-block btn-lg btn-primary">Change</button>
+                                            </div>
+                                        </div>
                                     }
 
-                                </div>
+                                      
                                 <div class="col-lg-2 col-md-4">
                                     @*<input type="submit" value="Change" style="height:35px" />*@
 
@@ -97,9 +99,7 @@
                                 <div class="col-lg-2 col-md-4">
 
                                 </div>
-                                <div class="col-lg-2 col-md-4">
-
-                                </div>
+                               
                                 <div class="col-lg-2 col-md-4">
 
                                 </div>

@@ -68,8 +68,6 @@ namespace SEP_Team1.Controllers
             Session["SessionIDs"] = (getIDs + 1);
             if (getIDs > 0)
             {
-
-
                 string id = Session["MaKH"] as string;
                 if (Buoithu == "" || Buoithu == null)
                 {
@@ -77,7 +75,7 @@ namespace SEP_Team1.Controllers
                 }
                 var query = (from pro in db.DiemDanhs where pro.MaKH == ids select pro).ToList();
                 ViewBag.Date = query;
-                //   Session["maKH"] = id;
+                // Session["maKH"] = id;
                 var monhoc = connect.TestCourse(id);
                 var sinhvien = (from pro in db.SinhViens where pro.maKH == id select pro).ToList();
                 var buoihoc = db.BangBuoiHocs.Where(bh => bh.maKH == id).ToList();
@@ -86,7 +84,6 @@ namespace SEP_Team1.Controllers
 
                 int sessionid = int.Parse(Buoithu);
                 Session["SessionExcel"] = Buoithu;
-
 
                 var diemdanh = (from pro in db.DiemDanhs where pro.MaKH == id && pro.sessionID == sessionid select pro).ToList();
 
