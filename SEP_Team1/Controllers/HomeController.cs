@@ -138,11 +138,13 @@ namespace SEP_Team1.Controllers
             }
             else
             {
-
-                return RedirectToAction("ViewListStudent", new RouteValueDictionary(
-             new { controller = "Home", action = "ViewListStudent", maKHs= maKH }));
+                // tbao không có buổi học
+                ViewBag.msg = "There is no session today";
+                
+                return RedirectToAction("ViewListStudent",new RouteValueDictionary(
+             new { controller = "Home", action = "ViewListStudent", maKHs = maKH}));
             }
-          //  return View();
+            //return View();
         }
      
         public ActionResult ViewListStudent(string maKHs)
@@ -358,11 +360,15 @@ namespace SEP_Team1.Controllers
                     Session["MaGV"] = item.data.id;
                     return RedirectToAction("Index", "Home");
                 }
+                else
+                {
+                    ViewBag.mgs = "tai khoang khong ton tai";
+                }
 
             }
             catch (NullReferenceException)
             {
-                ViewBag.mgs = "tai khoang khong ton tai";
+                ViewBag.mgs = "Incorrect account or password";
                 return RedirectToAction("Login", "Home");
             }
 

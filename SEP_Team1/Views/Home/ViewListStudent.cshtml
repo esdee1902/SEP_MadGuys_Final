@@ -11,6 +11,7 @@
     var students = (List<SEP_Team1.API.Member>)ViewBag.ListAttendance;
     var diemdanh = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Diemdanh;
     var makh = Session["MaKH"].ToString();
+   
 
 }
 
@@ -52,7 +53,7 @@
                             <h4 class="card-title">List of Student</h4>
                             <div class="row button-group">
                                 <div class="col-lg-2 col-md-4">
-                                    <a href="/Home/CreateAttendance/@makh"><i class="fa fa-plus-circle"></i> Create</a>
+                                    <a href="/Home/CreateAttendance/@makh"><i class="fa fa-plus-circle"></i> Create </a> @ViewBag.msg
                                 </div>
 
                             </div>
