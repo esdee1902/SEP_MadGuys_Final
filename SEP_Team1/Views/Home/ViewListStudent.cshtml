@@ -36,7 +36,7 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Course</a></li>
                     <li class="breadcrumb-item active">Attendance</li>
                 </ol>
-                <a href="/Home/CreateAttendance/@makh" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</a>
+
 
             </div>
         </div>
@@ -62,13 +62,11 @@
                             }
                            
                             <h4 class="card-title">List of Student</h4>
-                            <div class="row button-group">
-                                <div class="col-lg-2 col-md-4">
-                                    <a href="/Home/CreateAttendance/@makh"><i class="fa fa-plus-circle"></i> Create </a> @ViewBag.msg
-                                </div>
-
+                          
+                            <div class="col-md-4">
+                                <a href="/Home/CreateAttendance/@makh"><i class="fa fa-plus-circle"></i> Create New</a>
                             </div>
-                            <div></div>
+                            <h4></h4>
                             <div id="student-list" class="table-responsive">
                                 <table class="table color-table dark-table">
                                     <thead>
@@ -85,7 +83,7 @@
 
                                             <tr>
 
-                                                <td><a href="~/Home/StudentProfile/@item.Id" />@item.Id</td>
+                                                <td><a href="/Home/StudentProfile/@item.Id" />@item.Id</td>
                                                 <td>@item.fullname</td>
                                                 <td>@item.birthday</td>
                                                 <!-- xu li diem danh-->
