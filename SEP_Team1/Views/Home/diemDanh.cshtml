@@ -44,7 +44,7 @@
                 <!-- Column -->
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">EDIT</h4>
+                        <h4 class="card-title">SESSION OF DAY</h4>
                         <div class="row button-group">
                             @{
                                 List<SelectListItem> listItems = new List<SelectListItem>();
@@ -73,17 +73,23 @@
                                 }
 
                             }
-                           <div class="col-lg-2 col-md-4">
-                                @using (Html.BeginForm("diemDanh", "Home", FormMethod.Post))
-                                {
-                                   
-                                        @Html.DropDownList("session", listItems, "Lessons", new { @class = "btn btn-block btn-lg btn-secondary" })
-                                        <button type="submit" value="Choose" class="btn btn-block btn-lg btn-primary">Choose</button>
-                       
-                                }
-                                    </div>
-
-
+                           @*<div class="col-lg-2 col-md-4">*@
+                               
+                                   @using (Html.BeginForm("diemDanh", "Home", FormMethod.Post))
+                                   {
+                                    @*<form action="diemDanh" method="post">*@
+                                        <div class="row">
+                                            <div class="col-sm-6 ">
+                                                @Html.DropDownList("session", listItems,  new { @class = "btn btn-block btn-lg btn-secondary" })
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <button type="submit" value="Choose" class="btn btn-block btn-lg btn-primary">Choose</button>
+                                            </div>
+                                        </div>
+                                    @*</form>*@
+                                   }
+                                    
+                           @*</div>*@
                         </div>
                         <div id="student-list" class="table-responsive">
                             <table class="table color-table dark-table">
