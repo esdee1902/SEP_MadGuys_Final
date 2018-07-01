@@ -177,7 +177,8 @@ namespace SEP_Team1.API
         public StudentInfos Getstudent(string id)
         {
             //url address
-            urlConnect = urlAddress+ "/GetStudent?code={0}";
+            urlConnect = urlAddress + "/GetStudent?code={0}";
+
             urlConnect = string.Format(urlConnect, id);
 
             data = Url(urlConnect);
@@ -187,7 +188,6 @@ namespace SEP_Team1.API
                 var studentinfo = new StudentInfo();
                 //parse data json
                 //get data json type array
-
                 try
                 {
                     studentinfos = JsonConvert.DeserializeObject<StudentInfos>(data);
@@ -198,7 +198,6 @@ namespace SEP_Team1.API
                 }
                 //
                 return studentinfos;
-
             }
             return null;
         }
