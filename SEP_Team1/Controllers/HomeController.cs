@@ -381,8 +381,7 @@ namespace SEP_Team1.Controllers
                 {
                     Session["hoten"] = username;
                     Session["MaGV"] = item.data.id;
-                    return RedirectToAction("Index", "Home");
-                 
+                    return RedirectToAction("Index", "Home");         
                 }
             }
             catch (NullReferenceException)
