@@ -56,7 +56,7 @@ namespace UnitTestSep
             Assert.AreEqual("Login", redirectRoute.RouteValues["action"]);
             Assert.AreEqual("Home", redirectRoute.RouteValues["controller"]);
             ViewResult view = controller.Login(Username, password) as ViewResult;
-            Assert.AreEqual("tai khoang khong ton tai", controller.ViewBag.mgs);
+            Assert.AreEqual("Incorrect account or password", controller.ViewBag.mgs);
 
         }
         [TestMethod]
@@ -75,7 +75,7 @@ namespace UnitTestSep
             Assert.AreEqual("Login", redirectRoute.RouteValues["action"]);
             Assert.AreEqual("Home", redirectRoute.RouteValues["controller"]);
             ViewResult view = controller.Login(Username, password) as ViewResult;
-            Assert.AreEqual("tai khoang khong ton tai", controller.ViewBag.mgs);
+            Assert.AreEqual("Incorrect account or password", controller.ViewBag.mgs);
 
 
             //Assert.AreEqual("tai khoang khong ton tai", redirectRoute.ViewBag.mgs);
@@ -96,7 +96,7 @@ namespace UnitTestSep
             Assert.AreEqual("Login", redirectRoute.RouteValues["action"]);
             Assert.AreEqual("Home", redirectRoute.RouteValues["controller"]);
             ViewResult view = controller.Login(Username, password) as ViewResult;
-            Assert.AreEqual("tai khoang khong ton tai", controller.ViewBag.mgs);
+            Assert.AreEqual("Incorrect account or password", controller.ViewBag.mgs);
 
             //Assert.AreEqual("tai khoang khong ton tai", redirectRoute.ViewBag.mgs);
         }
@@ -149,7 +149,7 @@ namespace UnitTestSep
             var helper = new MockHelper();
             var context = helper.MakeFakeContext();
             var controller = new SEP_Team1.Controllers.HomeController();
-
+            context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
             context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
 
 
@@ -164,6 +164,7 @@ namespace UnitTestSep
             var helper = new MockHelper();
             var context = helper.MakeFakeContext();
             var controller = new SEP_Team1.Controllers.HomeController();
+            context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
             context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
 
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
@@ -176,12 +177,15 @@ namespace UnitTestSep
             var helper = new MockHelper();
             var context = helper.MakeFakeContext();
             var controller = new SEP_Team1.Controllers.HomeController();
-            context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
-            context.SetupGet(x => x.Session["exist"]).Returns("false");
+            context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
+            context.SetupGet(x => x.Session["MaKH"]).Returns("MH3");
 
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
-            ViewResult result = controller.CreateAttendance("") as ViewResult;
-            Assert.AreEqual("", result.ViewName);
+           RedirectToRouteResult result = controller.CreateAttendance("MH3") as RedirectToRouteResult;
+
+            Assert.AreEqual("", result.RouteName);
+
+
         }
 
 
@@ -191,6 +195,7 @@ namespace UnitTestSep
             var helper = new MockHelper();
             var context = helper.MakeFakeContext();
             var controller = new HomeController();
+            context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
             context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
             context.SetupGet(x => x.Session["SessionIDs"]).Returns("1");
 
@@ -205,6 +210,7 @@ namespace UnitTestSep
             var helper = new MockHelper();
             var context = helper.MakeFakeContext();
             var controller = new HomeController();
+            context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
             context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
             context.SetupGet(x => x.Session["SessionIDs"]).Returns("1");
 
@@ -293,7 +299,7 @@ namespace UnitTestSep
             var helper = new MockHelper();
             var context = helper.MakeFakeContext();
             var controller = new SEP_Team1.Controllers.HomeController();
-
+            context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
             context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
             ViewResult result = controller.ViewListStudent("MH2") as ViewResult;
@@ -305,6 +311,7 @@ namespace UnitTestSep
             var helper = new MockHelper();
             var context = helper.MakeFakeContext();
             var controller = new SEP_Team1.Controllers.HomeController();
+            context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
 
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
             ViewResult result = controller.ListStudent("MH2") as ViewResult;
