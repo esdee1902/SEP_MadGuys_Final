@@ -389,8 +389,8 @@ namespace SEP_Team1.Controllers
             }
             catch (NullReferenceException)
             {
-                ViewBag.mgs = "Incorrect account or password";
-                return RedirectToAction("Login");
+                ViewBag.mgs = "Incorrect Username or password";
+                return View();
             }
 
             return View();
