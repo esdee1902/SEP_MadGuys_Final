@@ -172,8 +172,6 @@ namespace SEP_Team1.Controllers
             int getIDs = (creates.GetLastID("DiemDanh", "sessionID", ids));
             if (getIDs > 0)
             {
-
-
                 if (session == "" || session == null)
                 {
                     session = "1";
@@ -209,8 +207,6 @@ namespace SEP_Team1.Controllers
                 return RedirectToAction("Course", new RouteValueDictionary(
              new { controller = "Home", action = "Course", Id = maKH }));
             }
-
-
             return View();
         }
 
