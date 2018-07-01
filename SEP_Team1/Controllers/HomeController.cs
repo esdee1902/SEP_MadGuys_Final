@@ -359,7 +359,7 @@ namespace SEP_Team1.Controllers
                 }
                 else
                 {
-                    ViewBag.mgs = "Incorrect account or password";
+                    ViewBag.mgs = "tai khoang khong ton tai";
                 }
 
             }
@@ -450,7 +450,7 @@ namespace SEP_Team1.Controllers
 
             var model = connect.Getstudent(id);
 
-            return View(model);
+            return View();
 
         }
     }
