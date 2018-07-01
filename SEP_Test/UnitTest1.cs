@@ -132,7 +132,7 @@ namespace UnitTestSep
             var context = helper.MakeFakeContext();
             var controller = new SEP_Team1.Controllers.HomeController();
 
-            context.SetupGet(x => x.Session["MaGV"]).Returns("GV123");
+            context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
 
             ViewResult result = controller.Index() as ViewResult;
@@ -294,7 +294,7 @@ namespace UnitTestSep
             context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
 
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
-            ViewResult result = controller.ListStudent("MH2") as ViewResult;
+            ViewResult result = controller.ListStudent("MH1") as ViewResult;
             Assert.AreEqual("", result.ViewName.ToString());
         }
         [TestMethod]
