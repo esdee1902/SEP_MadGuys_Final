@@ -3,13 +3,14 @@
     var buoihoc = (List<SEP_Team1.Models.BangBuoiHoc>)ViewBag.Buoihoc;
     var students = (List<SEP_Team1.API.Member>)ViewBag.ListAttendance;
     var diemdanh = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Diemdanh;
-
+  
 }
 @{
     ViewBag.Title = "CREATE ATTENDANCE";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model IEnumerable<SEP_Team1.Models.DiemDanh>
+
 <div class="container-fluid">
     <!-- ============================================================== -->
     <!-- Bread crumb and right sidebar toggle -->
@@ -42,7 +43,7 @@
                     <!-- Column -->
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">CREATE ATTENDANCE</h4>
+                            <h4 class="card-title" style="color: red">CREATE SUCCESSFUL</h4>
                             <div class="row button-group">
                                 <div class="col-lg-2 col-md-4">
                                     @*@Html.DropDownList("bhoc", new SelectList(buoihoc, "maBH", "maBH"), htmlAttributes: new { @class = "custom-select form-control input-sm m-b-10" })*@

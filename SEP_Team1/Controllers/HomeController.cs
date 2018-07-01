@@ -29,6 +29,11 @@ namespace SEP_Team1.Controllers
         APIConnect connect = new APIConnect();
         public ActionResult Index()
         {
+            if (Session["MaGV"].ToString().Length < 2)
+            {
+                return RedirectToAction("Login");
+            }
+            Session["CreateAttendance"] = "";
             string maGV = Session["MaGV"] as string;
             var monhoc = connect.TestCourse(maGV);
             //  var maMH = monhoc.
@@ -43,6 +48,11 @@ namespace SEP_Team1.Controllers
         }
         public ActionResult Course(string id)
         {
+            if (Session["MaGV"].ToString().Length < 2)
+            {
+                return RedirectToAction("Login");
+            }
+            Session["CreateAttendance"] = "";
             //
             Session["MaKH"] = id;
             ViewBag.IDmaKH = id;
@@ -61,6 +71,10 @@ namespace SEP_Team1.Controllers
         }
         public ActionResult ViewAttendance(string Buoithu)
         {
+            if (Session["MaGV"].ToString().Length < 2)
+            {
+                return RedirectToAction("Login");
+            }
             CreateSessionID creates = new CreateSessionID();
             string ids = Session["MaKH"].ToString();
             int getIDs = (creates.GetLastID("DiemDanh", "sessionID", ids));
@@ -109,6 +123,11 @@ namespace SEP_Team1.Controllers
         //[HttpGet]
         public ActionResult CreateAttendance(string maKH)
         {
+            if (Session["MaGV"].ToString().Length < 2)
+            {
+                return RedirectToAction("Login");
+            }
+            Session["CreateAttendance"] = "";
             try
             {
                 
@@ -130,14 +149,14 @@ namespace SEP_Team1.Controllers
             if (exist == true)
             {
                 ViewBag.ListAttendance = connect.GetMember(maKH).data;
-
+                Session["CreateAttendance"] = "";
                 return View();
             }
             else
             {
                 // tbao không có buổi học
-                ViewBag.msg = "There is no session today";
-                
+               // ViewBag.msg = "There is no session today";
+                Session["CreateAttendance"] = "There is no session today";
                 return RedirectToAction("ViewListStudent",new RouteValueDictionary(
              new { controller = "Home", action = "ViewListStudent", maKHs = maKH}));
             }
@@ -146,6 +165,11 @@ namespace SEP_Team1.Controllers
      
         public ActionResult ViewListStudent(string maKHs)
         {
+            if (Session["MaGV"].ToString().Length < 2)
+            {
+                return RedirectToAction("Login");
+            }
+
             maKHs = Session["MaKH"].ToString();
             ViewBag.ListAttendance = connect.GetMember(maKHs).data;
 
@@ -154,6 +178,10 @@ namespace SEP_Team1.Controllers
  
         public ActionResult ListStudent(string id)
         {
+            if (Session["MaGV"].ToString().Length < 2)
+            {
+                return RedirectToAction("Login");
+            }
             var item = connect.GetMember(id).data;
      
 
@@ -167,13 +195,15 @@ namespace SEP_Team1.Controllers
         }
         public ActionResult diemDanh( string session)
         {
+            if (Session["MaGV"].ToString().Length < 2)
+            {
+                return RedirectToAction("Login");
+            }
             CreateSessionID creates = new CreateSessionID();
             string ids = Session["MaKH"].ToString();
             int getIDs = (creates.GetLastID("DiemDanh", "sessionID", ids));
             if (getIDs > 0)
             {
-
-
                 if (session == "" || session == null)
                 {
                     session = "1";
@@ -209,8 +239,6 @@ namespace SEP_Team1.Controllers
                 return RedirectToAction("Course", new RouteValueDictionary(
              new { controller = "Home", action = "Course", Id = maKH }));
             }
-
-
             return View();
         }
 
@@ -356,10 +384,6 @@ namespace SEP_Team1.Controllers
                     Session["hoten"] = username;
                     Session["MaGV"] = item.data.id;
                     return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ViewBag.mgs = "tai khoang khong ton tai";
                 }
 
             }
