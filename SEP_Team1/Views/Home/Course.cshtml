@@ -18,16 +18,16 @@
     <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
     <div class="row page-titles">
-        <div class="col-md-12">
-
+        <div class="col-md-5 align-self-center">
+            <h4 class="text-themecolor">Course</h4>
         </div>
-        <div class="col-md-6">
-            <ol class="breadcrumb"></ol>
-        </div>
-        <div class="col-md-6 text-right">
-            <form class="app-search d-none d-md-block d-lg-block">
-                <input type="text" class="form-control" placeholder="Search &amp; enter">
-            </form>
+        <div class="col-md-7 align-self-center text-right">
+            <div class="d-flex justify-content-end align-items-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    <li class="breadcrumb-item active">Course</li>
+                </ol>
+            </div>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -109,57 +109,57 @@
     <!-- ============================================================== -->
 
     <div class="row">
-             @foreach (var item in list.data)
-                                {
-                                    try
-                                    {
-                                        if (item.Id.Trim() == idmakh.Trim())
-                                        {
-                                           
-                                
-        <div class="col-12 m-t-30">
-            <h4 class="m-b-0">Course @Session["MaKH"]</h4>
-            <p class="text-muted m-t-0 font-12"></p>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h4 class="card-title">Edit Attendance</h4>
-                    <p class="card-text">Press the button below if you want to edit attendance information.</p>  
-                    <a href="~/Home/diemDanh/@item.Id" class="btn btn-info">Edit</a>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h4 class="card-title">Attendance</h4>
-                    <p class="card-text">You can manual attendance if our app has damge.</p>
-                    <a href="~/Home/ViewListStudent/@item.Id"class="btn btn-primary">Attendance</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h4 class="card-title">View Attendance</h4>
-                    <p class="card-text">You can see the list of student attendance in here.</p>
-                    <a href="~/Home/ViewAttendance/1"  class="btn btn-warning">View</a>
-                </div>
-            </div>
-        </div>
+        @foreach (var item in list.data)
+        {
+            try
+            {
+                if (item.Id.Trim() == idmakh.Trim())
+                {
+
+
+                    <div class="col-12 m-t-30">
+                        <h4 class="m-b-0">Course @Session["MaKH"]</h4>
+                        <p class="text-muted m-t-0 font-12"></p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h4 class="card-title">Edit Attendance</h4>
+                                <p class="card-text">Press the button below if you want to edit attendance information.</p>
+                                <a href="~/Home/diemDanh/@item.Id" class="btn btn-info">Edit</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h4 class="card-title">Attendance</h4>
+                                <p class="card-text">You can manual attendance if our app has damge.</p>
+                                <a href="~/Home/ViewListStudent/@item.Id" class="btn btn-primary">Attendance</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h4 class="card-title">View Attendance</h4>
+                                <p class="card-text">You can see the list of student attendance in here.</p>
+                                <a href="~/Home/ViewAttendance/1" class="btn btn-warning">View</a>
+                            </div>
+                        </div>
+                    </div>
                 }
-                                    }
-                                    catch (Exception)
-                                    {
+            }
+            catch (Exception)
+            {
 
-                                    }
-
-
+            }
 
 
-                                }
+
+
+        }
     </div>
     <!-- ============================================================== -->
 </div>

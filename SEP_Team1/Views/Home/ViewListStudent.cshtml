@@ -26,20 +26,19 @@
     <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
     <div class="row page-titles">
-        <div class="col-md-12">
+        <div class="col-md-5 align-self-center">
+            <h4 class="text-themecolor">Attendance</h4>
+        </div>
+        <div class="col-md-7 align-self-center text-right">
+            <div class="d-flex justify-content-end align-items-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Course</a></li>
+                    <li class="breadcrumb-item active">Attendance</li>
+                </ol>
+                <a href="/Home/CreateAttendance/@makh" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</a>
 
-            <h4 class="text-white"></h4>
-        </div>
-        <div class="col-md-6">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)"></a></li>
-                <li class="breadcrumb-item active"></li>
-            </ol>
-        </div>
-        <div class="col-md-6 text-right">
-            <form class="app-search d-none d-md-block d-lg-block">
-                <input type="text" class="form-control" placeholder="Search &amp; enter">
-            </form>
+            </div>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -63,12 +62,7 @@
                             }
                            
                             <h4 class="card-title">List of Student</h4>
-                            <div class="row button-group">
-                                <div class="col-lg-2 col-md-4">
-                                    <a href="~/Home/CreateAttendance/@makh"><i class="fa fa-plus-circle"></i> Create </a> @ViewBag.msg
-                                </div>
-
-                            </div>
+                          
                             <div></div>
                             <div id="student-list" class="table-responsive">
                                 <table class="table color-table dark-table">
@@ -86,7 +80,7 @@
 
                                             <tr>
 
-                                                <td><a href="~/Home/StudentProfile/@item.Id" />@item.Id</td>
+                                                <td><a href="/Home/StudentProfile/@item.Id" />@item.Id</td>
                                                 <td>@item.fullname</td>
                                                 <td>@item.birthday</td>
                                                 <!-- xu li diem danh-->
