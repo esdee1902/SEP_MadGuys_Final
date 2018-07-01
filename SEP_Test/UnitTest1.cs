@@ -222,7 +222,6 @@ namespace UnitTestSep
             PartialViewResult result = controller.Check("BHMH1003") as PartialViewResult;
             //Assert.AreEqual("", result.ViewBag.Diemdanh);
             Assert.AreEqual("", result.ViewName);
-
         }
         [TestMethod]
         public void TestChange()
@@ -250,22 +249,6 @@ namespace UnitTestSep
 
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
             var redirectToRouteResult = controller.Change("T154888") as RedirectToRouteResult;
-            Assert.AreEqual("", redirectToRouteResult.RouteName);
-        }
-        [TestMethod]
-        public void TestEdit()
-        {
-            var helper = new MockHelper();
-            var context = helper.MakeFakeContext();
-            var controller = new HomeController();
-            context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
-            context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
-            //context.SetupGet(x => x.Session["SessionID"]).Returns("3");
-
-
-
-            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
-            var redirectToRouteResult = controller.Edit("") as RedirectToRouteResult;
             Assert.AreEqual("", redirectToRouteResult.RouteName);
         }
         [TestMethod]
