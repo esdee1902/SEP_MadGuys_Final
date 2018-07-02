@@ -31,10 +31,11 @@ namespace UnitTestSep
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
 
             var redirectRoute = controller.Login(Username, password) as RedirectToRouteResult;
-
             Assert.IsNotNull(redirectRoute);
             Assert.AreEqual("Index", redirectRoute.RouteValues["action"]);
             Assert.AreEqual("Home", redirectRoute.RouteValues["controller"]);
+
+
 
         }
         [TestMethod]
@@ -48,12 +49,9 @@ namespace UnitTestSep
             var Username = "phamminhhuyen";
             var password = "123";
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
-            var redirectRoute = controller.Login(Username, password) as RedirectToRouteResult;
-            Assert.IsNotNull(redirectRoute);
-            Assert.AreEqual("Login", redirectRoute.RouteValues["action"]);
-            Assert.AreEqual("Home", redirectRoute.RouteValues["controller"]);
             ViewResult view = controller.Login(Username, password) as ViewResult;
-            Assert.AreEqual("Incorrect account or password", controller.ViewBag.mgs);
+            Assert.AreEqual("", view.ViewName);
+            Assert.AreEqual("Incorrect username or password", controller.ViewBag.mgs);
 
         }
         [TestMethod]
@@ -67,13 +65,9 @@ namespace UnitTestSep
             var Username = "phamminhhuyennn";
             var password = "croprokiwi";
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
-            var redirectRoute = controller.Login(Username, password) as RedirectToRouteResult;
-            Assert.IsNotNull(redirectRoute);
-            Assert.AreEqual("Login", redirectRoute.RouteValues["action"]);
-            Assert.AreEqual("Home", redirectRoute.RouteValues["controller"]);
             ViewResult view = controller.Login(Username, password) as ViewResult;
-            Assert.AreEqual("Incorrect account or password", controller.ViewBag.mgs);
-
+            Assert.AreEqual("", view.ViewName);
+            Assert.AreEqual("Incorrect username or password", controller.ViewBag.mgs);
 
             //Assert.AreEqual("tai khoang khong ton tai", redirectRoute.ViewBag.mgs);
         }
@@ -88,12 +82,9 @@ namespace UnitTestSep
             var Username = "phamminhhuyenn";
             var password = "234567";
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
-            var redirectRoute = controller.Login(Username, password) as RedirectToRouteResult;
-            //Assert.IsNotNull(redirectRoute);
-            Assert.AreEqual("Login", redirectRoute.RouteValues["action"]);
-            Assert.AreEqual("Home", redirectRoute.RouteValues["controller"]);
             ViewResult view = controller.Login(Username, password) as ViewResult;
-            Assert.AreEqual("Incorrect account or password", controller.ViewBag.mgs);
+            Assert.AreEqual("",view.ViewName);
+            Assert.AreEqual("Incorrect username or password", controller.ViewBag.mgs);
 
             //Assert.AreEqual("tai khoang khong ton tai", redirectRoute.ViewBag.mgs);
         }
@@ -122,7 +113,7 @@ namespace UnitTestSep
             var redirectRoute = controller.Login(Username, password) as RedirectToRouteResult;
             var redirectToRouteResult = controller.Logout() as RedirectToRouteResult;
             Assert.AreEqual("Login", redirectToRouteResult.RouteValues["action"]);
-            Assert.AreEqual("Home", redirectToRouteResult.RouteValues["controller"]);
+           
 
         }
         [TestMethod]
@@ -162,10 +153,10 @@ namespace UnitTestSep
             var context = helper.MakeFakeContext();
             var controller = new SEP_Team1.Controllers.HomeController();
             context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
-            context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
+            context.SetupGet(x => x.Session["MaKH"]).Returns("MH3");
 
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
-            ViewResult result = controller.CreateAttendance("MH2") as ViewResult;
+            ViewResult result = controller.CreateAttendance("MH1") as ViewResult;
             Assert.AreEqual("", result.ViewName);
         }
         [TestMethod]
@@ -270,7 +261,7 @@ namespace UnitTestSep
 
 
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
-            var redirectToRouteResult = controller.Ed("") as RedirectToRouteResult;
+            var redirectToRouteResult = controller.Ed("BHMH2001") as RedirectToRouteResult;
             Assert.AreEqual("", redirectToRouteResult.RouteName);
         }
         [TestMethod]
