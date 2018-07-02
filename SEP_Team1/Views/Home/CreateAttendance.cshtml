@@ -3,7 +3,8 @@
     var buoihoc = (List<SEP_Team1.Models.BangBuoiHoc>)ViewBag.Buoihoc;
     var students = (List<SEP_Team1.API.Member>)ViewBag.ListAttendance;
     var diemdanh = (List<SEP_Team1.Models.DiemDanh>)ViewBag.Diemdanh;
-  
+    var makh = Session["MaKH"].ToString();
+
 }
 @{
     ViewBag.Title = "CREATE ATTENDANCE";
@@ -27,7 +28,7 @@
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Create</a></li>
                     <li class="breadcrumb-item active">Cre</li>
                 </ol>
-                <a href="/Home/CreateAttendance/@makh" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</a>
+                <a href="~/Home/CreateAttendance/@makh" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</a>
 
             </div>
         </div>
