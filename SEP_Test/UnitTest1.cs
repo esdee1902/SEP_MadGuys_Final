@@ -8,6 +8,7 @@ using SEP_Demo.Tests;
 using Moq;
 using System.Web;
 
+
 namespace UnitTestSep
 {
     [TestClass]
@@ -160,7 +161,7 @@ namespace UnitTestSep
             Assert.AreEqual("", result.ViewName);
         }
         [TestMethod]
-        public void TestCreateAttendance2()
+        public void TestCreateAttendanceWithNullID()
         {
             var helper = new MockHelper();
             var context = helper.MakeFakeContext();
@@ -169,7 +170,23 @@ namespace UnitTestSep
             context.SetupGet(x => x.Session["MaKH"]).Returns("MH3");
 
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
-           RedirectToRouteResult result = controller.CreateAttendance("MH3") as RedirectToRouteResult;
+           RedirectToRouteResult result = controller.CreateAttendance("") as RedirectToRouteResult;
+
+            Assert.AreEqual("", result.RouteName);
+
+
+        }
+        [TestMethod]
+        public void TestCreateAttendanceWithWrongID()
+        {
+            var helper = new MockHelper();
+            var context = helper.MakeFakeContext();
+            var controller = new SEP_Team1.Controllers.HomeController();
+            context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
+            //context.SetupGet(x => x.Session["MaKH"]).Returns("MH3");
+
+            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+            RedirectToRouteResult result = controller.CreateAttendance("ddas") as RedirectToRouteResult;
 
             Assert.AreEqual("", result.RouteName);
 
@@ -256,12 +273,32 @@ namespace UnitTestSep
             var controller = new HomeController();
             context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
             context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
+
             //context.SetupGet(x => x.Session["SessionID"]).Returns("3");
 
 
 
             controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
             var redirectToRouteResult = controller.Ed("BHMH2001") as RedirectToRouteResult;
+            
+            Assert.AreEqual("", redirectToRouteResult.RouteName);
+        }
+        [TestMethod]
+        public void TestEdit()
+        {
+            var helper = new MockHelper();
+            var context = helper.MakeFakeContext();
+            var controller = new HomeController();
+            context.SetupGet(x => x.Session["MaGV"]).Returns("MH");
+            context.SetupGet(x => x.Session["MaKH"]).Returns("MH2");
+
+            //context.SetupGet(x => x.Session["SessionID"]).Returns("3");
+
+
+
+            controller.ControllerContext = new ControllerContext(context.Object, new RouteData(), controller);
+            var redirectToRouteResult = controller.Ed("BHMH2001") as RedirectToRouteResult;
+
             Assert.AreEqual("", redirectToRouteResult.RouteName);
         }
         [TestMethod]
