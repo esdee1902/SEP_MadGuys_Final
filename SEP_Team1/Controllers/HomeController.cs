@@ -262,8 +262,8 @@ namespace SEP_Team1.Controllers
             cmd.ExecuteNonQuery();
             Utility.OpenConnection();
             conn.Close();
-        
-           
+
+
             return RedirectToAction("diemDanh", new { Buoithu = Session["SessionID"].ToString() });
         }
 

@@ -52,46 +52,46 @@
                         <div class="card-body">
                             <h4 class="card-title">VIEW ATTENDANCE</h4>
                             <div class="row button-group">
-                                    @{
-                                        List<SelectListItem> listItems = new List<SelectListItem>();
-                                        CreateSessionID create = new CreateSessionID();
+                                @{
+                                    List<SelectListItem> listItems = new List<SelectListItem>();
+                                    CreateSessionID create = new CreateSessionID();
 
-                                        int getID = (create.GetLastID("DiemDanh", "sessionID", Session["MaKH"].ToString()));
-                                        List<string> list = new List<string>();
-                                        string textdate = "";
-                                        for (int i = 1; i <= getID; i++)
-                                        {
-                                            foreach (var item in date)
-                                            {
-                                                if (item.sessionID == i)
-                                                {
-                                                    textdate = item.Date.ToString("dd/MM/yyyy");
-                                                }
-                                            }
-                                            listItems.Add(new SelectListItem
-                                            {
-                                                Text = textdate + " (" + i.ToString() + ")",
-                                                Value = i.ToString()
-                                                //Text = "Session " + i.ToString(),
-                                                //Value = i.ToString()
-                                            });
-                                        }
-
-                                    }
-
-                                    @using (Html.BeginForm("ViewAttendance", "Home", FormMethod.Post))
+                                    int getID = (create.GetLastID("DiemDanh", "sessionID", Session["MaKH"].ToString()));
+                                    List<string> list = new List<string>();
+                                    string textdate = "";
+                                    for (int i = 1; i <= getID; i++)
                                     {
-                                        <div class="row">
-                                            <div class="col-sm-6 ">
-                                                @Html.DropDownList("Buoithu", listItems, new { @class = "btn btn-block btn-lg btn-secondary" })
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <button type="submit" value="Change" class="btn btn-block btn-lg btn-primary">Change</button>
-                                            </div>
-                                        </div>
+                                        foreach (var item in date)
+                                        {
+                                            if (item.sessionID == i)
+                                            {
+                                                textdate = item.Date.ToString("dd/MM/yyyy");
+                                            }
+                                        }
+                                        listItems.Add(new SelectListItem
+                                        {
+                                            Text = textdate + " (" + i.ToString() + ")",
+                                            Value = i.ToString()
+                                            //Text = "Session " + i.ToString(),
+                                            //Value = i.ToString()
+                                        });
                                     }
 
-                                      
+                                }
+
+                                @using (Html.BeginForm("ViewAttendance", "Home", FormMethod.Post))
+                                {
+                                    <div class="row">
+                                        <div class="col-sm-6 ">
+                                            @Html.DropDownList("Buoithu", listItems, new { @class = "btn btn-block btn-lg btn-secondary" })
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <button type="submit" value="Change" class="btn btn-block btn-lg btn-primary">Change</button>
+                                        </div>
+                                    </div>
+                                }
+
+
                                 <div class="col-lg-2 col-md-4">
                                     @*<input type="submit" value="Change" style="height:35px" />*@
 
@@ -99,7 +99,7 @@
                                 <div class="col-lg-2 col-md-4">
 
                                 </div>
-                               
+
                                 <div class="col-lg-2 col-md-4">
 
                                 </div>
@@ -127,14 +127,14 @@
 
                                             <tr>
                                                 <td><a href="/Home/StudentProfile/@item.MSSV" />@item.MSSV</td>
-                                             @foreach (var x in studen)
-                                             {
-                                                 if (item.MSSV.Trim() == x.Id.Trim())
-                                                 {
-                                                     <td>@x.fullname</td>
-                                                     <td>@x.birthday</td>
-                                                 }
-                                             }
+                                                @foreach (var x in studen)
+                                                {
+                                                    if (item.MSSV.Trim() == x.Id.Trim())
+                                                    {
+                                                        <td>@x.fullname</td>
+                                                        <td>@x.birthday</td>
+                                                    }
+                                                }
 
                                                 <!-- xu li diem danh-->
 
@@ -175,7 +175,7 @@
             </div>
         </form>
     </div>
-    @*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+   @*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript">
             $(function () {
                 $("#btnSave").on("click", function (e) {
@@ -200,28 +200,28 @@
             })
         </script>
 
-        <script type="text/javascript">
-            $(".bt-switch input[type='checkbox'], .bt-switch input[type='radio']").bootstrapSwitch();
-            var radioswitch = function () {
-                var bt = function () {
-                    $(".radio-switch").on("switch-change", function () {
-                        $(".radio-switch").bootstrapSwitch("toggleRadioState")
-                    }), $(".radio-switch").on("switch-change", function () {
-                        $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck")
-                    }), $(".radio-switch").on("switch-change", function () {
-                        $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck", !1)
-                    })
-                };
-                return {
-                    init: function () {
-                        bt()
-                    }
+ <script type="text/javascript">
+        $(".bt-switch input[type='checkbox'], .bt-switch input[type='radio']").bootstrapSwitch();
+        var radioswitch = function () {
+            var bt = function () {
+                $(".radio-switch").on("switch-change", function () {
+                    $(".radio-switch").bootstrapSwitch("toggleRadioState")
+                }), $(".radio-switch").on("switch-change", function () {
+                    $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck")
+                }), $(".radio-switch").on("switch-change", function () {
+                    $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck", !1)
+                })
+            };
+            return {
+                init: function () {
+                    bt()
                 }
-            }();
-            $(document).ready(function () {
-                radioswitch.init()
-            });
-        </script>*@
+            }
+        }();
+        $(document).ready(function () {
+            radioswitch.init()
+        });
+    </script>*@
     <!-- ============================================================== -->
     <!-- End Comment - chats -->
     <!-- ============================================================== -->
